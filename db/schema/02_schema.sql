@@ -43,9 +43,11 @@ picked_up BOOLEAN DEFAULT FALSE
 );
 
 
-CREATE TABLE restaurant_detail (
+CREATE TABLE restaurant_details (
 id INTEGER PRIMARY KEY NOT NULL,
+name VARCHAR(255) NOT NULL,
 phone VARCHAR(255) NOT NULL,
+email VARCHAR(255) NOT NULL,
 street_address VARCHAR(255) NOT NULL,
 city VARCHAR(255) NOT NULL,
 province VARCHAR(255) NOT NULL,

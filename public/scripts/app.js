@@ -1,10 +1,4 @@
-// // Client facing scripts here
-// $(document).ready(function () {
-//   // $(".submit-btn btn-primary").hide();
-
-
-// });
-
+// const { subtractQuantity } = require('../scripts/quantity-control');
 
 const renderMenu = function (categoryNames, menuItems) {
   for (let category of categoryNames) {
@@ -27,7 +21,7 @@ const createCategoryElement = function (category) {
 
 const createMenuElement = function (item) {
   let $menu = $(`
-  <div class="menu-item card mb-3 row">
+          <div class="menu-item card mb-3 row">
             <div class="row g-0">
               <!-- image container -->
               <div class="col-3">
@@ -49,7 +43,7 @@ const createMenuElement = function (item) {
                     <div>
                       <button class="add-to-cart">cart</button>
                       <button class="subtract-quantity">-</button>
-                      <input class="menu-item-quantity" type="number" min="0" max="99" value="1">
+                      <input class="menu-item-quantity" type="number" min="1" max="99" value="1">
                       <button class="add-quantity">+</button>
                     </div>
                   </div>
@@ -61,6 +55,9 @@ const createMenuElement = function (item) {
   `);
   return $menu;
 };
+
+
+
 
 const loadMenu = function () {
   $(function () {
@@ -75,3 +72,20 @@ const loadMenu = function () {
   });
 };
 loadMenu();
+// live handler
+$(document).on('click', '.subtract-quantity', function () {
+  $(this).siblings('.menu-item-quantity').val(function (n, value) {
+    if (value < 2) {
+      return value;
+    }
+    return value - 1;
+  });
+});
+$(document).on('click', '.add-quantity', function () {
+  $(this).siblings('.menu-item-quantity').val(function (n, value) {
+    if (value > 99) {
+      return value;
+    }
+    return parseInt(value, 10) + 1;
+  });
+});

@@ -6,11 +6,24 @@
 // });
 
 
-const renderMenu = function (menuItems) {
-  for (let item of menuItems) {
-    $('#menu-items-container').append(createMenuElement(item));
+const renderMenu = function (categoryNames, menuItems) {
+  for (let category of categoryNames) {
+    $('#menu-items-container').append(createCategoryElement(category));
+    for (let item of menuItems) {
+      if (item.category === category.name) {
+        $('#menu-items-container').append(createMenuElement(item));
+
+      }
+    }
   }
 };
+
+const createCategoryElement = function (category) {
+  let $category = $(`
+  <div id="${category.name}">${category.name}</div>
+  `)
+  return $category;
+}
 
 const createMenuElement = function (item) {
   let $menu = $(`
@@ -52,9 +65,12 @@ const createMenuElement = function (item) {
 const loadMenu = function () {
   $(function () {
     $.get('/api/menu', (menuData) => {
-      console.log(menuData);
-      $("#menu-items-container").empty();
-      renderMenu(menuData);
+      $.get('/api/categories', (categoryData) => {
+
+        console.log(menuData);
+        $("#menu-items-container").empty();
+        renderMenu(categoryData, menuData);
+      });
     });
   });
 };

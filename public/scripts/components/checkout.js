@@ -1,6 +1,9 @@
+const { getCarts } = require("../../../db/queries/carts");
+
 $(() => {
-  const $checkout = $(
-    ` <body>
+  const $checkout = () => {
+    const $check = $(
+      ` <body>
     <header id="page-header" class="page-header"></header>
     <main id="main-content">
       <nav class="navbar navbar-light bg-light">
@@ -29,7 +32,7 @@ $(() => {
                 <!-- image container -->
                 <div class="col-3">
                   <img
-                    src="${item.picture_url}"
+                    src="{item.picture_url}"
                     class="img-fluid rounded-start"
                     alt="burger"
                     width="128"
@@ -40,12 +43,12 @@ $(() => {
                 <div class="col-9">
                   <!-- card body -->
                   <div class="card-body row">
-                    <h5 class="card-title">${item.name}</h5>
-                    <p class="card-text">${item.description}</p>
+                    <h5 class="card-title">{item.name}</h5>
+                    <p class="card-text">{item.description}</p>
                     <!-- price, cart and quantity -->
                     <div class="cart-functions d-flex justify-content-between">
                       <div>
-                        <div class="item-price">$${item.price}</div>
+                        <div class="item-price">{item.price}</div>
                       </div>
                     </div>
                   </div>
@@ -54,11 +57,11 @@ $(() => {
             </div>
           </div>
           <div class="card">
-            <p>subtotal: ${cart.total}</p>
+            <p>subtotal: {cart.total}</p>
             <br />
-            <p>tax: ${cart.total * 0.12}</p>
+            <p>tax: {cart.total * 0.12}</p>
             <br />
-            <p>TOTAL: ${cart.total + tax}</p>
+            <p>TOTAL: {cart.total + tax}</p>
           </div>
           <button type="submit" class="btn btn-success w-50 mt-2 mb-3">
             confirm order
@@ -79,12 +82,14 @@ $(() => {
       type="text/javascript"
       src="./scripts/components/preorder.js"
     ></script>
-  </body>
-`
-  );
+  </body>`
+    );
+    return $check;
+  };
+
   $("#orderConfirmation").on("click", () => {
     console.log("hey");
-    $.post("http://localhost:8080/api/order").then((data) => {
+    $.post("http://localhost:8080/api/order").then(() => {
       console.log("this works");
     });
   });

@@ -1,9 +1,11 @@
-const { Pool } = require('pg/lib');
-const db = require('../connection');
+const { Pool } = require("pg/lib");
+const db = require("../connection");
 
 const getCarts = (id) => {
-  console.log('cartId', id);
-  return db.query(`
+  console.log("cartId", id);
+  return db
+    .query(
+      `
   SELECT carts.id,
   user_id,
   ordered_status,
@@ -20,18 +22,19 @@ const getCarts = (id) => {
   JOIN menu_items ON menu_item_id = menu_items.id
   WHERE carts.id = $1
   GROUP BY carts.id, menu_item_id, quantity, menu_items.name, menu_items.price;
-  `, [id])
-    .then(cart => {
+  `,
+      [id]
+    )
+    .then((cart) => {
       // console.log(cart);
       return cart.rows[0];
     });
 };
 
 const createEmptyCart = () => {
-  console.log('cart created');
+  console.log("cart created");
   return db.query(`INSERT INTO carts DEFAULT VALUES RETURNING *;`);
 };
-
 
 // wip : append cart id, item_id, and quantity to cart
 // check if quantity accumulator works
@@ -40,9 +43,10 @@ const addToCart = (cartItemData) => {
   for (let key in cartItemData) {
     queryParams.push(cartItemData[key]);
   }
-  console.log('qp', queryParams);
+  console.log("qp", queryParams);
   // upsert
-  return db.query(`
+  return db.query(
+    `
   INSERT INTO cart_menu_items (cart_id, menu_item_id, quantity)
   VALUES ($1,$2,$3)
   ON CONFLICT (cart_id, menu_item_id) DO UPDATE
@@ -50,7 +54,9 @@ const addToCart = (cartItemData) => {
       menu_item_id = excluded.menu_item_id,
       quantity = cart_menu_items.quantity + $3
   RETURNING *;
-      `, queryParams);
+      `,
+    queryParams
+  );
 };
 
 module.exports = { getCarts, createEmptyCart, addToCart };

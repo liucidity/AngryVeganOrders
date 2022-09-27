@@ -1,5 +1,5 @@
-const accountSid = "ACf295d65529703e2ef37bc60e7e10323d";
-const authToken = "27059aabe354a896ee0dced8f3938308";
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require("twilio")(accountSid, authToken);
 
 const sendMessage = (phone) => {

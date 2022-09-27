@@ -1,7 +1,5 @@
 // load .env data into process.env
 require("dotenv").config();
-const { MessagingResponse } = require("twilio").twiml;
-
 // Web server config
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");

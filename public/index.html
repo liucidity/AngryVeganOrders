@@ -71,6 +71,7 @@
                       <div class="item-price">$12.00</div>
                     </div>
                     <div>
+
                       <button class="add-to-cart">cart</button>
                       <button class="subtract-quantity">-</button>
                       <input class="menu-item-quantity" type="number" min="0" max="99" value="1">
@@ -193,8 +194,20 @@
   </div>
 
   <!-- cart footer -->
-  <div class="cart btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"
-    aria-controls="offcanvasBottom">Toggle bottom offcanvas</div>
+
+  <div class="cart btn btn-primary col-12 justify-content-between" type="button" data-bs-toggle="offcanvas"
+    data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
+    <div>
+      Cart(
+      <span id="cart-total-quantity">1</span>
+      )
+    </div>
+
+    <div id="cart-subtotal">
+      Subtotal: $11.00
+    </div>
+
+  </div>
 
   <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
     <div class="offcanvas-header">

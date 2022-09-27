@@ -1,26 +1,37 @@
 // const { subtractQuantity } = require('../scripts/quantity-control');
+$(document).ready(function () {
 
-const renderMenu = function (categoryNames, menuItems) {
-  for (let category of categoryNames) {
-    $('#menu-items-container').append(createCategoryElement(category));
-    for (let item of menuItems) {
-      if (item.category === category.name) {
-        $('#menu-items-container').append(createMenuElement(item));
 
+  let currentCart = null;
+  const renderMenu = function (categoryNames, menuItems) {
+    for (let category of categoryNames) {
+      $('#menu-items-container').append(createCategoryElement(category));
+      for (let item of menuItems) {
+        if (item.category === category.name) {
+          $('#menu-items-container').append(createMenuElement(item));
+
+        }
       }
     }
-  }
-};
+  };
+  const renderCart = function (cartData) {
+    console.log(cartData);
+    // does not exist
+    $('#cart-total-quantity').val(cartData.items);
+    $('#cart-subtotal').val(cartData.total);
 
-const createCategoryElement = function (category) {
-  let $category = $(`
+  }
+
+
+  const createCategoryElement = function (category) {
+    let $category = $(`
   <div id="${category.name}">${category.name}</div>
   `)
-  return $category;
-}
+    return $category;
+  }
 
-const createMenuElement = function (item) {
-  let $menu = $(`
+  const createMenuElement = function (item) {
+    let $menu = $(`
           <div class="menu-item card mb-3 row">
             <div class="row g-0">
               <!-- image container -->
@@ -41,10 +52,13 @@ const createMenuElement = function (item) {
                       <div class="item-price">$${item.price}</div>
                     </div>
                     <div>
-                      <button class="add-to-cart">cart</button>
+                    <form class="cart-form" id="${item.id}">
+                      <input type="hidden" class="itemId" value="${item.id}" name="${item.id}" />
+                      <button class="add-to-cart" type="submit">cart</button>
                       <button class="subtract-quantity">-</button>
-                      <input class="menu-item-quantity" type="number" min="1" max="99" value="1">
+                      <input class="menu-item-quantity" type="number" min="1" max="99" value="1"/>
                       <button class="add-quantity">+</button>
+                    </form>
                     </div>
                   </div>
                 </div>
@@ -53,39 +67,72 @@ const createMenuElement = function (item) {
             </div>
           </div>
   `);
-  return $menu;
-};
+    return $menu;
+  };
 
 
 
 
-const loadMenu = function () {
-  $(function () {
-    $.get('/api/menu', (menuData) => {
-      $.get('/api/categories', (categoryData) => {
+  const loadMenu = function () {
+    $(function () {
+      $.get('/api/carts')
+        .then((cartID) => {
+          console.log(cartID.rows[0].id);
+          currentCart = cartID.rows[0].id;
+          $.get(`/api/carts/${cartID.rows[0].id}`, (cartData) => {
+            renderCart(cartData);
+          });
+        });
 
-        console.log(menuData);
-        $("#menu-items-container").empty();
-        renderMenu(categoryData, menuData);
+      $.get('/api/menu', (menuData) => {
+        $.get('/api/categories', (categoryData) => {
+          $("#menu-items-container").empty();
+          renderMenu(categoryData, menuData);
+        });
       });
     });
+  };
+  loadMenu();
+
+  // live handler
+  $(document).on('click', '.subtract-quantity', function () {
+    $(this).siblings('.menu-item-quantity').val(function (n, value) {
+      if (value < 2) {
+        return value;
+      }
+      return value - 1;
+    });
   });
-};
-loadMenu();
-// live handler
-$(document).on('click', '.subtract-quantity', function () {
-  $(this).siblings('.menu-item-quantity').val(function (n, value) {
-    if (value < 2) {
-      return value;
-    }
-    return value - 1;
+  $(document).on('click', '.add-quantity', function () {
+    $(this).siblings('.menu-item-quantity').val(function (n, value) {
+      if (value > 99) {
+        return value;
+      }
+      return parseInt(value, 10) + 1;
+    });
   });
-});
-$(document).on('click', '.add-quantity', function () {
-  $(this).siblings('.menu-item-quantity').val(function (n, value) {
-    if (value > 99) {
-      return value;
-    }
-    return parseInt(value, 10) + 1;
+
+  $(document).on('click', `.add-to-cart`, function (e) {
+    e.preventDefault();
+
+    // get
+
+    const itemId = $(this).siblings('.itemId')[0];
+    const itemIdValue = $(itemId).val();
+    const quantity = $(this).siblings('.menu-item-quantity')[0];
+    const quantityValue = $(quantity).val();
+    const itemData = { itemId: itemIdValue, quantity: quantityValue };
+
+    // $.post(`/api/carts/${currentCart}`, function () {
+    //   console.log(itemData);
+    //   $(this).siblings('.menu-item-quantity').val();
+    // });
+
+    $.ajax({
+      method: "POST",
+      url: `/api/carts/${currentCart}`,
+      data: itemData
+    });
+
   });
 });

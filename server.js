@@ -1,5 +1,6 @@
 // load .env data into process.env
 require("dotenv").config();
+const { MessagingResponse } = require("twilio").twiml;
 
 // Web server config
 const sassMiddleware = require("./lib/sass-middleware");
@@ -36,6 +37,7 @@ const menuApiRoutes = require("./routes/menu-api");
 const categoryApiRoutes = require("./routes/categories-api");
 const cartApiRoutes = require("./routes/carts-api");
 const orderRoutes = require("./routes/order-api");
+const messageApiRoutes = require("./routes/message-api");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
@@ -46,6 +48,7 @@ app.use("/api/menu", menuApiRoutes);
 app.use("/api/categories", categoryApiRoutes);
 app.use("/api/carts", cartApiRoutes);
 app.use("/api/order", orderRoutes);
+app.use("/api/message", messageApiRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -53,7 +56,7 @@ app.use("/api/order", orderRoutes);
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.redirect("/preorder");
+  res.redirect("/");
 });
 
 app.get("/preorder", (req, res) => {

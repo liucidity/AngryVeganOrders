@@ -86,11 +86,8 @@ $(() => {
     );
     return $check;
   };
-
+  const data = []; // bring total and phone number for the user
   $("#orderConfirmation").on("click", () => {
-    console.log("hey");
-    $.post("http://localhost:8080/api/order").then(() => {
-      console.log("this works");
-    });
+    $.post("http://localhost:8080/api/order", data).then(() => {});
   });
 });

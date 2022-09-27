@@ -6,7 +6,7 @@ const sendMessage = (phone) => {
   client.messages
     .create({
       body: "this is a twilio test",
-      from: "+12495043092", //phone goes here <--
+      from: `${phone}`, //phone goes here <--
       to: "+15875664191",
     })
     .then((message) => console.log(message.sid));

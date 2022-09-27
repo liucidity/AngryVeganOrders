@@ -1,5 +1,5 @@
 $(() => {
-  const $preorder = $(
+  const $checkout = $(
     ` <body>
     <header id="page-header" class="page-header"></header>
     <main id="main-content">
@@ -82,4 +82,10 @@ $(() => {
   </body>
 `
   );
+  $("#orderConfirmation").on("click", () => {
+    console.log("hey");
+    $.post("http://localhost:8080/api/order").then((data) => {
+      console.log("this works");
+    });
+  });
 });

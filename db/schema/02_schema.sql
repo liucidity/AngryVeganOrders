@@ -31,7 +31,8 @@ category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
 CREATE TABLE cart_menu_items (
 cart_id INTEGER REFERENCES carts(id) ON DELETE CASCADE,
 menu_item_id INTEGER REFERENCES menu_items(id) ON DELETE CASCADE,
-quantity SMALLINT NOT NULL DEFAULT 1
+quantity SMALLINT NOT NULL DEFAULT 1,
+unique(cart_id,menu_item_id)
 );
 
 

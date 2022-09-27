@@ -16,32 +16,22 @@ const createEmptyCart = () => {
 
 // wip : append cart id, item_id, and quantity to cart
 // check if quantity accumulator works
-const addToCart = (id, item) => {
+const addToCart = (cartItemData) => {
   let queryParams = [];
-  for (let key in item) {
-    queryParams.push(item[key]);
+  for (let key in cartItemData) {
+    queryParams.push(cartItemData[key]);
   }
-
+  console.log('qp', queryParams);
+  // upsert
   return db.query(`
-    INSERT INTO cart_menu_items (cart_id, menu_item_id, quantity)
-      VALUES ($1, $2, $3);
-  `, [2, 2, 3]);
-
-  //   return db.query(`
-  //     DO
-  //     $do$
-  //     BEGIN
-  //       IF EXISTS (SELECT * FROM cart_menu_items
-  //         WHERE menu_item_id = $2)
-  //       THEN
-  //         UPDATE cart_menu_items
-  //         SET quantity = (quantity + $3);
-  //       ELSE
-  //       INSERT INTO cart_menu_items (cart_id, menu_item_id, quantity)
-  //       VALUES ($1, $2, $3);
-  //     END
-  //     $do$
-  //   `, [1, 2, 3]);
+  INSERT INTO cart_menu_items (cart_id, menu_item_id, quantity)
+  VALUES ($1,$2,$3)
+  ON CONFLICT (cart_id, menu_item_id) DO UPDATE
+  SET cart_id = excluded.cart_id,
+      menu_item_id = excluded.menu_item_id,
+      quantity = cart_menu_items.quantity + $3
+  RETURNING *;
+      `, queryParams);
 };
 
 module.exports = { getCarts, createEmptyCart, addToCart };

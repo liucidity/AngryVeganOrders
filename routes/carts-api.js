@@ -25,13 +25,13 @@ router.get('/', (req, res) => {
 
 router.post('/:id', (req, res) => {
   console.log(req.body);
-  cartQueries.addToCart(req.body)
+  cartQueries.addToCart({ cart_id: req.params.id, ...req.body })
     .then(cart => {
       res.json(cart);
     })
     .catch(err => {
       console.log(err.message);
     });
-})
+});
 
 module.exports = router;

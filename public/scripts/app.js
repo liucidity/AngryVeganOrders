@@ -95,7 +95,8 @@ $(document).ready(function () {
   loadMenu();
 
   // live handler
-  $(document).on('click', '.subtract-quantity', function () {
+  $(document).on('click', '.subtract-quantity', function (e) {
+    e.preventDefault();
     $(this).siblings('.menu-item-quantity').val(function (n, value) {
       if (value < 2) {
         return value;
@@ -103,7 +104,9 @@ $(document).ready(function () {
       return value - 1;
     });
   });
-  $(document).on('click', '.add-quantity', function () {
+  $(document).on('click', '.add-quantity', function (e) {
+    e.preventDefault();
+
     $(this).siblings('.menu-item-quantity').val(function (n, value) {
       if (value > 99) {
         return value;
@@ -112,7 +115,7 @@ $(document).ready(function () {
     });
   });
 
-  $(document).on('click', `.add-to-cart`, function (e) {
+  $(document).on('click', '.add-to-cart', function (e) {
     e.preventDefault();
 
     // get

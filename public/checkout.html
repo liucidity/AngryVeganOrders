@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!------ Bootstrap links -------->
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- twilio  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <!-- jquery  -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-latest.js"
+    ></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
+    <title>Angry Vegan</title>
+  </head>
+  <body>
+    <header id="page-header" class="page-header"></header>
+    <main id="main-content">
+      <nav class="navbar navbar-light bg-light">
+        <button class="btn"><i class="fa-solid fa-arrow-left"></i> Back</button>
+        <a class="navbar-brand" href="#">
+          <img
+            src="https://www.angryveganpenticton.ca/app/uploads/Angry-Vegan.svg"
+            width="30"
+            height="30"
+            class="d-inline-block align-top"
+            alt=""
+          />
+          Angry Vegan
+        </a>
+        <div></div>
+      </nav>
+      <header class="m-5">
+        <h2 class="text-center">Pickup</h2>
+      </header>
+      <div class="card text-center">
+        <div class="card-header">Your items</div>
+        <div class="card-body">
+          <div class="container" id="">
+            <div class="menu-item card mb-3 row">
+              <div class="row g-0">
+                <!-- image container -->
+                <div class="col-3">
+                  <img
+                    src="${item.picture_url}"
+                    class="img-fluid rounded-start"
+                    alt="burger"
+                    width="128"
+                    height="128"
+                  />
+                </div>
+                <!-- card right section -->
+                <div class="col-9">
+                  <!-- card body -->
+                  <div class="card-body row">
+                    <h5 class="card-title">${item.name}</h5>
+                    <p class="card-text">${item.description}</p>
+                    <!-- price, cart and quantity -->
+                    <div class="cart-functions d-flex justify-content-between">
+                      <div>
+                        <div class="item-price">$${item.price}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <p>subtotal: ${cart.total}</p>
+            <br />
+            <p>tax: ${(cart.total * 0.12)}</p>
+            <br />
+            <p>TOTAL: ${cart.total + tax}</p>
+          </div>
+          <button type="submit" class="btn btn-success w-50 mt-2 mb-3">
+            confirm order
+          </button>
+          <button type="submit" class="btn btn-danger mt-2 mb-3">
+            Edit cart
+          </button>
+          <div class="card-footer text-muted">Angry Vegan</div>
+        </div>
+      </div>
+    </main>
+
+    <!-- js  -->
+    <script src="./views_manager.js s"></script>
+    <script src="./scripts/numberInput.js"></script>
+    <!-- components  -->
+    <script
+      type="text/javascript"
+      src="./scripts/components/preorder.js"
+    ></script>
+  </body>
+</html>

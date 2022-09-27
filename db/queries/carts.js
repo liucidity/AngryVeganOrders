@@ -2,8 +2,27 @@ const { Pool } = require('pg/lib');
 const db = require('../connection');
 
 const getCarts = (id) => {
-  return db.query(`SELECT * FROM carts WHERE id = $1;`, [id])
+  console.log('cartId', id);
+  return db.query(`
+  SELECT carts.id,
+  user_id,
+  ordered_status,
+  (price*quantity) AS item_totals,
+  (SELECT SUM(price*quantity) FROM menu_items
+    JOIN cart_menu_items ON menu_item_id = menu_items.id WHERE cart_id = $1) AS subtotal,
+  (SELECT COUNT(quantity) FROM cart_menu_items WHERE cart_id = $1) AS
+    item_count,
+  menu_item_id,
+  quantity,
+  menu_items.name
+  FROM carts
+  JOIN cart_menu_items ON carts.id = cart_id
+  JOIN menu_items ON menu_item_id = menu_items.id
+  WHERE carts.id = $1
+  GROUP BY carts.id, menu_item_id, quantity, menu_items.name, menu_items.price;
+  `, [id])
     .then(cart => {
+      // console.log(cart);
       return cart.rows[0];
     });
 };

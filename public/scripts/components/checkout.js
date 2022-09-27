@@ -1,52 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!------ Bootstrap links -------->
-    <!-- JavaScript Bundle with Popper -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-      crossorigin="anonymous"
-    ></script>
-    <!-- CSS only -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-      crossorigin="anonymous"
-    />
-    <!-- font awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <!-- twilio  -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
-    <!-- jquery  -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script
-      type="text/javascript"
-      src="https://code.jquery.com/jquery-latest.js"
-    ></script>
-
-    <script
-      src="https://code.jquery.com/jquery-3.6.1.min.js"
-      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-      crossorigin="anonymous"
-    ></script>
-    <title>Angry Vegan</title>
-  </head>
-  <body>
+$(() => {
+  const $preorder = $(
+    ` <body>
     <header id="page-header" class="page-header"></header>
     <main id="main-content">
       <nav class="navbar navbar-light bg-light">
@@ -102,29 +56,22 @@
           <div class="card">
             <p>subtotal: ${cart.total}</p>
             <br />
-            <p>tax: ${(cart.total * 0.12)}</p>
+            <p>tax: ${cart.total * 0.12}</p>
             <br />
             <p>TOTAL: ${cart.total + tax}</p>
           </div>
-          <button id="orderConfirmation" class="btn btn-success w-50 mt-2 mb-3">
+          <button type="submit" class="btn btn-success w-50 mt-2 mb-3">
             confirm order
           </button>
-          <button class="btn btn-danger mt-2 mb-3">Edit cart</button>
+          <button type="submit" class="btn btn-danger mt-2 mb-3">
+            Edit cart
+          </button>
           <div class="card-footer text-muted">Angry Vegan</div>
         </div>
       </div>
     </main>
 
     <!-- js  -->
-    <script>
-      $("#orderConfirmation").on("click", () => {
-        console.log("hey");
-        $.post("http://localhost:8080/api/order").then((data) => {
-          console.log("this works");
-        });
-      });
-    </script>
-
     <script src="./views_manager.js s"></script>
     <script src="./scripts/numberInput.js"></script>
     <!-- components  -->
@@ -133,4 +80,6 @@
       src="./scripts/components/preorder.js"
     ></script>
   </body>
-</html>
+`
+  );
+});

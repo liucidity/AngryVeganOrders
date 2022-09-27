@@ -5,7 +5,7 @@ router.get("/", (req, res) => {});
 
 router.post("/", (req, res) => {
   return orderqueries.makeOrder("any").then((order) => {
-    console.log("from router:");
+    console.log("from router:", order);
     res.json(order);
   });
 });

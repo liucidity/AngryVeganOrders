@@ -120,6 +120,14 @@
     <!-- <script src="./views_manager.js s"></script> -->
     <!-- <script src="./scripts/numberInput.js"></script> -->
     <!-- components  -->
+    <script>
+      $("#orderConfirmation").on("click", () => {
+        console.log("hey");
+        $.post("http://localhost:8080/api/order").then((data) => {
+          console.log("this works");
+        });
+      });
+    </script>
     <script
       type="text/javascript"
       src="./scripts/components/preorder.js"

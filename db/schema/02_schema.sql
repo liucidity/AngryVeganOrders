@@ -8,8 +8,10 @@ DROP TABLE IF EXISTS restaurant_details CASCADE;
 CREATE TABLE carts (
 id SERIAL PRIMARY KEY NOT NULL,
 user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-total DECIMAL(4,2)
+total DECIMAL(4,2),
+ordered_status BOOLEAN DEFAULT FALSE
 );
+
 CREATE TABLE categories (
 id SERIAL PRIMARY KEY NOT NULL,
 name VARCHAR(255) NOT NULL
@@ -29,7 +31,8 @@ category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
 CREATE TABLE cart_menu_items (
 cart_id INTEGER REFERENCES carts(id) ON DELETE CASCADE,
 menu_item_id INTEGER REFERENCES menu_items(id) ON DELETE CASCADE,
-quantity SMALLINT NOT NULL DEFAULT 1
+quantity SMALLINT NOT NULL DEFAULT 1,
+unique(cart_id,menu_item_id)
 );
 
 

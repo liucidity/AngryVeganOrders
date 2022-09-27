@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD <head>
+
+
+<head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,254 +33,212 @@
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <title>Angry Vegan</title>
-  </head>
+</head>
 
-  <body>
-    <header id="page-header" class="page-header"></header>
-    <!-- bootstrap nav bar-->
-    <nav class="navbar bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <img src="https://www.angryveganpenticton.ca/app/uploads/Angry-Vegan.svg" alt="Logo" width="30" height="24"
-            class="d-inline-block align-text-top">
-          Angry Vegan
-        </a>
+<body>
+  <header id="page-header" class="page-header"></header>
+  <!-- bootstrap nav bar-->
+  <nav class="navbar bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="https://www.angryveganpenticton.ca/app/uploads/Angry-Vegan.svg" alt="Logo" width="30" height="24"
+          class="d-inline-block align-text-top">
+        Angry Vegan
+      </a>
+    </div>
+  </nav>
+
+  <div class="body-container">
+    <!-- categories scroll -->
+    <div>
+      <div id="categories-list" class="list-group">
+        <a class="list-group-item list-group-item-action" href="#Vegan Burgers">Burgers</a>
+        <a class="list-group-item list-group-item-action" href="#Fresh Juice">Juices</a>
       </div>
-    </nav>
-
-    <div class="body-container">
-      <!-- categories scroll -->
-      <div>
-        <div id="categories-list" class="list-group">
-          <a class="list-group-item list-group-item-action" href="#Vegan Burgers">Burgers</a>
-          <a class="list-group-item list-group-item-action" href="#Fresh Juice">Juices</a>
-        </div>
-      </div>
+    </div>
 
 
-      <main id="main-content">
-        <section>
-          <section id="menu-items-container">
-            <div id="burgers">burgers</div>
-            <!-- item -->
-            <div class="menu-item card mb-3 row">
-              <div class="row g-0">
-                <!-- image container -->
-                <div class="col-3">
-                  <img
-                    src="https://images.pexels.com/photos/6546024/pexels-photo-6546024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                    class="img-fluid rounded-start" alt="burger" width="128" height="128">
-                </div>
-                <!-- card right section -->
-                <div class="col-9">
-                  <!-- card body -->
-                  <div class="card-body row">
-                    <h5 class="card-title">vegan burger</h5>
-                    <p class="card-text">ingredient 1, ingredient 2, ingredient 3, ingredient 4, </p>
-                    <!-- price, cart and quantity -->
-                    <div class="cart-functions d-flex justify-content-between">
-                      <div>
-                        <div class="item-price">$12.00</div>
-                      </div>
-                      <div>
+    <main id="main-content">
+      <section>
+        <section id="menu-items-container">
+          <div id="burgers">burgers</div>
+          <!-- item -->
+          <div class="menu-item card mb-3 row">
+            <div class="row g-0">
+              <!-- image container -->
+              <div class="col-3">
+                <img
+                  src="https://images.pexels.com/photos/6546024/pexels-photo-6546024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                  class="img-fluid rounded-start" alt="burger" width="128" height="128">
+              </div>
+              <!-- card right section -->
+              <div class="col-9">
+                <!-- card body -->
+                <div class="card-body row">
+                  <h5 class="card-title">vegan burger</h5>
+                  <p class="card-text">ingredient 1, ingredient 2, ingredient 3, ingredient 4, </p>
+                  <!-- price, cart and quantity -->
+                  <div class="cart-functions d-flex justify-content-between">
+                    <div>
+                      <div class="item-price">$12.00</div>
+                    </div>
+                    <div>
 
-                        <button class="add-to-cart">cart</button>
-                        <button class="subtract-quantity">-</button>
-                        <input class="menu-item-quantity" type="number" min="0" max="99" value="1">
-                        <button class="add-quantity">+</button>
-                      </div>
+                      <button class="add-to-cart">cart</button>
+                      <button class="subtract-quantity">-</button>
+                      <input class="menu-item-quantity" type="number" min="0" max="99" value="1">
+                      <button class="add-quantity">+</button>
                     </div>
                   </div>
-
                 </div>
+
               </div>
             </div>
+          </div>
 
-            <div class="menu-item card mb-3 row">
-              <div class="row g-0">
-                <!-- image container -->
-                <div class="col-3">
-                  <img
-                    src="https://images.pexels.com/photos/6546024/pexels-photo-6546024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                    class="img-fluid rounded-start" alt="burger" width="128" height="128">
-                </div>
-                <!-- card right section -->
-                <div class="col-9">
-                  <!-- card body -->
-                  <div class="card-body row">
-                    <h5 class="card-title">vegan burger</h5>
-                    <p class="card-text">ingredient 1, ingredient 2, ingredient 3, ingredient 4, </p>
-                    <!-- price, cart and quantity -->
-                    <div class="cart-functions d-flex justify-content-between">
-                      <div>
-                        <div class="item-price">$12.00</div>
-                      </div>
-                      <div>
-                        <button class="add-to-cart">cart</button>
-                        <button class="subtract-quantity">-</button>
-                        <input class="menu-item-quantity" type="number" min="0" max="99" value="1">
-                        <button class="add-quantity">+</button>
-                      </div>
+          <div class="menu-item card mb-3 row">
+            <div class="row g-0">
+              <!-- image container -->
+              <div class="col-3">
+                <img
+                  src="https://images.pexels.com/photos/6546024/pexels-photo-6546024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                  class="img-fluid rounded-start" alt="burger" width="128" height="128">
+              </div>
+              <!-- card right section -->
+              <div class="col-9">
+                <!-- card body -->
+                <div class="card-body row">
+                  <h5 class="card-title">vegan burger</h5>
+                  <p class="card-text">ingredient 1, ingredient 2, ingredient 3, ingredient 4, </p>
+                  <!-- price, cart and quantity -->
+                  <div class="cart-functions d-flex justify-content-between">
+                    <div>
+                      <div class="item-price">$12.00</div>
+                    </div>
+                    <div>
+                      <button class="add-to-cart">cart</button>
+                      <button class="subtract-quantity">-</button>
+                      <input class="menu-item-quantity" type="number" min="0" max="99" value="1">
+                      <button class="add-quantity">+</button>
                     </div>
                   </div>
-
                 </div>
+
               </div>
             </div>
+          </div>
 
-            <div class="menu-item card mb-3 row">
-              <div class="row g-0">
-                <!-- image container -->
-                <div class="col-3">
-                  <img
-                    src="https://images.pexels.com/photos/6546024/pexels-photo-6546024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                    class="img-fluid rounded-start" alt="burger" width="128" height="128">
-                </div>
-                <!-- card right section -->
-                <div class="col-9">
-                  <!-- card body -->
-                  <div class="card-body row">
-                    <h5 class="card-title">vegan burger</h5>
-                    <p class="card-text">ingredient 1, ingredient 2, ingredient 3, ingredient 4, </p>
-                    <!-- price, cart and quantity -->
-                    <div class="cart-functions d-flex justify-content-between">
-                      <div>
-                        <div class="item-price">$12.00</div>
-                      </div>
-                      <div>
-                        <button class="add-to-cart">cart</button>
-                        <button class="subtract-quantity">-</button>
-                        <input class="menu-item-quantity" type="number" min="0" max="99" value="1">
-                        <button class="add-quantity">+</button>
-                      </div>
+          <div class="menu-item card mb-3 row">
+            <div class="row g-0">
+              <!-- image container -->
+              <div class="col-3">
+                <img
+                  src="https://images.pexels.com/photos/6546024/pexels-photo-6546024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                  class="img-fluid rounded-start" alt="burger" width="128" height="128">
+              </div>
+              <!-- card right section -->
+              <div class="col-9">
+                <!-- card body -->
+                <div class="card-body row">
+                  <h5 class="card-title">vegan burger</h5>
+                  <p class="card-text">ingredient 1, ingredient 2, ingredient 3, ingredient 4, </p>
+                  <!-- price, cart and quantity -->
+                  <div class="cart-functions d-flex justify-content-between">
+                    <div>
+                      <div class="item-price">$12.00</div>
+                    </div>
+                    <div>
+                      <button class="add-to-cart">cart</button>
+                      <button class="subtract-quantity">-</button>
+                      <input class="menu-item-quantity" type="number" min="0" max="99" value="1">
+                      <button class="add-quantity">+</button>
                     </div>
                   </div>
-
                 </div>
+
               </div>
             </div>
+          </div>
 
-            <div class="menu-item card mb-3 row">
-              <div class="row g-0">
-                <!-- image container -->
-                <div class="col-3">
-                  <img
-                    src="https://images.pexels.com/photos/6546024/pexels-photo-6546024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                    class="img-fluid rounded-start" alt="burger" width="128" height="128">
-                </div>
-                <!-- card right section -->
-                <div class="col-9">
-                  <!-- card body -->
-                  <div class="card-body row">
-                    <h5 class="card-title">vegan burger</h5>
-                    <p class="card-text">ingredient 1, ingredient 2, ingredient 3, ingredient 4, </p>
-                    <!-- price, cart and quantity -->
-                    <div class="cart-functions d-flex justify-content-between">
-                      <div>
-                        <div class="item-price">$12.00</div>
-                      </div>
-                      <div>
-                        <button class="add-to-cart">cart</button>
-                        <button class="subtract-quantity">-</button>
-                        <input class="menu-item-quantity" type="number" min="0" max="99" value="1">
-                        <button class="add-quantity">+</button>
-                      </div>
+          <div class="menu-item card mb-3 row">
+            <div class="row g-0">
+              <!-- image container -->
+              <div class="col-3">
+                <img
+                  src="https://images.pexels.com/photos/6546024/pexels-photo-6546024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                  class="img-fluid rounded-start" alt="burger" width="128" height="128">
+              </div>
+              <!-- card right section -->
+              <div class="col-9">
+                <!-- card body -->
+                <div class="card-body row">
+                  <h5 class="card-title">vegan burger</h5>
+                  <p class="card-text">ingredient 1, ingredient 2, ingredient 3, ingredient 4, </p>
+                  <!-- price, cart and quantity -->
+                  <div class="cart-functions d-flex justify-content-between">
+                    <div>
+                      <div class="item-price">$12.00</div>
+                    </div>
+                    <div>
+                      <button class="add-to-cart">cart</button>
+                      <button class="subtract-quantity">-</button>
+                      <input class="menu-item-quantity" type="number" min="0" max="99" value="1">
+                      <button class="add-quantity">+</button>
                     </div>
                   </div>
-
                 </div>
+
               </div>
             </div>
-            <div id="fresh-juice">Fresh Juices</div>
+          </div>
+          <div id="fresh-juice">Fresh Juices</div>
 
 
 
 
 
-          </section>
         </section>
+      </section>
 
 
 
-      </main>
+    </main>
+  </div>
+
+  <!-- cart footer -->
+
+  <div class="cart btn btn-primary col-12 justify-content-between" type="button" data-bs-toggle="offcanvas"
+    data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
+    <div>
+      Cart (<span id="cart-total-quantity">1</span>)
     </div>
 
-    <!-- cart footer -->
-
-    <div class="cart btn btn-primary col-12 justify-content-between" type="button" data-bs-toggle="offcanvas"
-      data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
-      <div>
-        Cart (<span id="cart-total-quantity">1</span>)
-      </div>
-
-      <div>
-        Subtotal:
-        $<span id="cart-subtotal">1</span>
-      </div>
-
+    <div>
+      Subtotal:
+      $<span id="cart-subtotal">1</span>
     </div>
 
-    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas bottom</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body small">
-        ...
-      </div>
+  </div>
+
+  <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas bottom</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
+    <div class="offcanvas-body small">
+      ...
+    </div>
+  </div>
 
-    <!-- js  -->
-    <script src="./views_manager.js s"></script>
-    <script src="./scripts/numberInput.js"></script>
-    <!-- components  -->
-    <script type="text/javascript" src="./scripts/components/preorder.js"></script>
-    <script type="text/javascript" src="./scripts/app.js"></script>
-    <script type="text/javascript" src="./scripts/quantity-control.js"></script>
-  </body>
+  <!-- js  -->
+  <script src="./views_manager.js s"></script>
+  <script src="./scripts/numberInput.js"></script>
+  <!-- components  -->
+  <script type="text/javascript" src="./scripts/components/preorder.js"></script>
+  <script type="text/javascript" src="./scripts/app.js"></script>
+  <script type="text/javascript" src="./scripts/quantity-control.js"></script>
+</body>
 
 
-
-  =======
-
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!------ Bootstrap links -------->
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-      crossorigin="anonymous"></script>
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
-    <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- twilio  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
-    <!-- jquery  -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <title>Angry Vegan</title>
-  </head>
-
-  <body>
-    <header id="page-header" class="page-header"></header>
-    <main id="main-content"></main>
-
-    <!-- js  -->
-    <script src="./views_manager.js s"></script>
-    <script src="./scripts/numberInput.js"></script>
-    <!-- components  -->
-    <script type="text/javascript" src="./scripts/components/preorder.js"></script>
-  </body>
-  >>>>>>> master
 
 </html>

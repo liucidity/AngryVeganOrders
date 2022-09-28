@@ -39,11 +39,12 @@ $(() => {
     </div>
     <div class="card-footer text-muted"></div>
   </div>
+ <script type="text/javascript" src="./scripts/components/preorder.js"></script>
+
 </body>
 `
   );
   window.$preorder = $preorder;
-
   //////////////////trello just form for cellphone input//////////////////////////
   const phoneInputField = document.querySelector("#phone");
   const phoneInput = window.intlTelInput(phoneInputField, {
@@ -70,13 +71,13 @@ $(() => {
   //////////////////submit number and creates an user/////////////////////////////////////////
   $("#numberInput").on("submit", function (event) {
     event.preventDefault();
+    console.log("this is the form");
     const data = $(this).serialize();
 
-    $.post("http://localhost:8080/api/users", data).then((data) => {
-      console.log(data);
+    $.post("/api/users", data).then((d) => {
+      console.log(d);
     });
   });
-
   // getAllListings(data).then(function( json ) {
   //   propertyListings.addProperties(json.properties);
   //   views_manager.show('preorders');

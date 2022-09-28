@@ -80,11 +80,22 @@ $(() => {
   };
   window.createCheckout.createCheckout = createCheckouts; //// category selection use it as an example!!
 
+  ///////////////////get cart info//////////////////////////////
+
+  $.get("/api/carts").then((cartID) => {
+    currentCart = cartID.id;
+    console.log("currentCart", currentCart);
+    $.get(`/api/carts/${cartID.id}`, (cartData) => {
+      console.log("cartdata", cartData);
+    });
+  });
+
+  /////////////////rendering page Window_manager////////////////////////////////////////
   const $checkout = $("<div></div>");
 
   window.$checkout = $checkout;
 
-  console.log(window.$checkout);
+  // console.log(window.$checkout);
 
   window.checkout = {};
 
@@ -95,7 +106,7 @@ $(() => {
     return $checkout.empty();
   };
   const addCheckoutMenu = (cartData) => {
-    console.log("running");
+    // console.log("running");
     clearCheckoutMenu();
     const checkoutElement = window.createCheckout.createCheckout(cartData);
     appendCheckoutElement(checkoutElement);
@@ -105,7 +116,7 @@ $(() => {
 
   const data = []; // bring total and phone number for the user
   $("#orderConfirmation").on("click", () => {
-    console.log("cliked");
+    // console.log("cliked");
     $.post("/api/order").then(() => {
       views_manager.show("thanks");
     });

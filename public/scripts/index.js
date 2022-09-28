@@ -4,7 +4,7 @@ $(document).ready(function () {
     $(function () {
       $.get("/api/carts").then((cartID) => {
         currentCart = cartID.id;
-        console.log("currentCart", currentCart);
+        // console.log("currentCart", currentCart);
         $.get(`/api/carts/${cartID.id}`, (cartData) => {
           // console.log('cartdata', cartData);
           renderCartDrawer(cartData);
@@ -51,7 +51,7 @@ $(document).ready(function () {
     $(this)
       .siblings(".menu-item-quantity")
       .val(function (n, value) {
-        console.log(value);
+        // console.log(value);
         if (parseInt(value, 10) > 99) {
           return parseInt(value, 10);
         }
@@ -74,8 +74,8 @@ $(document).ready(function () {
       .siblings(".cart-item-quantity")
       .val(function (n, value) {
         if (value < 2) {
-          console.log(value);
-          console.log("too low");
+          // console.log(value);
+          // console.log("too low");
           return value;
         }
 
@@ -90,7 +90,7 @@ $(document).ready(function () {
           data: itemData,
         }).done(
           $.get(`/api/carts/${currentCart}`, (cartData) => {
-            console.log("cartdata", cartData);
+            // console.log("cartdata", cartData);
             cartItems.addCartItems(cartData);
             renderCartDrawer(cartData[0]);
           })
@@ -117,7 +117,7 @@ $(document).ready(function () {
           data: itemData,
         }).done(
           $.get(`/api/carts/${currentCart}`, (cartData) => {
-            console.log("cartdata", cartData);
+            // console.log("cartdata", cartData);
             cartItems.addCartItems(cartData);
             renderCartDrawer(cartData[0]);
           })
@@ -137,7 +137,7 @@ $(document).ready(function () {
     const itemIdValue = $(itemId).val();
     const quantity = $(this).siblings(".menu-item-quantity")[0];
     const quantityValue = $(quantity).val();
-    console.log("quantityValue", quantityValue);
+    // console.log("quantityValue", quantityValue);
     const itemData = { itemId: itemIdValue, quantity: quantityValue };
 
     // $.post(`/api/carts/${currentCart}`, function () {
@@ -150,7 +150,7 @@ $(document).ready(function () {
       data: itemData,
     }).done(() => {
       $.get(`/api/carts/${currentCart}`, (cartDrawerData) => {
-        console.log("cartdata", cartDrawerData);
+        // console.log("cartdata", cartDrawerData);
         //if undefined return early
         renderCartDrawer(cartDrawerData[0]);
       });
@@ -171,7 +171,7 @@ $(document).ready(function () {
       data: { menu_item_id: itemIdValue },
     }).done(() => {
       $.get(`/api/carts/${currentCart}`, (cartData) => {
-        console.log("delete cartdata", cartData);
+        // console.log("delete cartdata", cartData);
         cartItems.addCartItems(cartData);
         renderCartDrawer(cartData[0]);
       });
@@ -184,12 +184,12 @@ $(document).ready(function () {
 
   $("#cart-drawer").click(function () {
     $.get(`/api/carts/${currentCart}`, (cartData) => {
-      console.log("cartdata", cartData);
+      // console.log("cartdata", cartData);
       cartItems.addCartItems(cartData);
     });
   });
   const renderCartDrawer = function (cartDrawerData) {
-    console.log("cartDrawerData", cartDrawerData);
+    // console.log("cartDrawerData", cartDrawerData);
 
     //WIP: bug fix on delete change back to 0 quantity and 0 subtotal
     if (!cartDrawerData) {

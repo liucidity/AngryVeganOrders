@@ -30,7 +30,7 @@ function clearCategorySelector() {
 const addCategorySelector = function (categoryNames) {
   clearCategorySelector();
   for (let category of categoryNames) {
-    console.log(category);
+    // console.log(category);
     const categorySelectorElement =
       categorySelector.createSelectorElement(category);
     addCategorySelectElement(categorySelectorElement);

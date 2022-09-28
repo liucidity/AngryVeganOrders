@@ -72,11 +72,11 @@ $(() => {
 
   $("#numberInput").on("submit", function (event) {
     event.preventDefault();
-    console.log("this is the form");
+    // console.log("this is the form");
     const data = $(this).serialize();
 
     $.post("/api/users", data).then((d) => {
-      console.log(d);
+      // console.log(d);
       checkout.addCheckoutMenu(d);
       views_manager.show("checkout");
     });

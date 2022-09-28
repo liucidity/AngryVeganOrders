@@ -8,7 +8,6 @@
 
 // module.exports = { subtractQuantity };
 
-
 $(document).ready(function () {
   //   console.log('ready');
   //   $("subtract-quantity").click(function (e) {
@@ -17,8 +16,7 @@ $(document).ready(function () {
   //     console.log('button found');
   //   })
 
-
-  $('.add-quantity').select(function (e) {
-    console.log('clicked');
+  $(".add-quantity").select(function (e) {
+    // console.log('clicked');
   });
 });

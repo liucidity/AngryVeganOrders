@@ -55,16 +55,13 @@
 
   <main id="main-content">
 
-
-
-
   </main>
   </div>
 
   <!-- cart footer -->
 
   <div class="cart btn btn-primary col-12 justify-content-between" type="button" data-bs-toggle="offcanvas"
-    data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
+    id="cart-drawer" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
     <div>
       Cart (<span id="cart-total-quantity">0</span>)
     </div>
@@ -76,12 +73,13 @@
 
   </div>
 
-  <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+  <div class="offcanvas offcanvas-bottom h-75" tabindex="-1" id="offcanvasBottom"
+    aria-labelledby="offcanvasBottomLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas bottom</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body small">
+    <div class="offcanvas-body small" id="full-cart-contents">
       ...
     </div>
   </div>
@@ -95,8 +93,10 @@
   <script type="text/javascript" src="./scripts/components/menu_item.js"></script>
   <script type="text/javascript" src="./scripts/components/category_heading.js"></script>
   <script type="text/javascript" src="./scripts/components/category_selector.js"></script>
+
   <script type="text/javascript" src="./scripts/components/menu_screen.js"></script>
-  <script type="text/javascript" src="./scripts/app.js"></script>
+  <script type="text/javascript" src="./scripts/components/cart_item.js"></script>
+  <!-- <script type="text/javascript" src="./scripts/app.js"></script> -->
   <script type="text/javascript" src="./scripts/quantity-control.js"></script>
 </body>
 

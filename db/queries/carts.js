@@ -1,7 +1,7 @@
 const { Pool } = require('pg/lib');
 const db = require('../connection');
 
-const getCarts = (id) => {
+const getCart = (id) => {
   console.log('cartId', id);
   return db.query(`
   SELECT carts.id,
@@ -13,17 +13,19 @@ const getCarts = (id) => {
   (SELECT COUNT(quantity) FROM cart_menu_items WHERE cart_id = $1) AS
     item_count,
   menu_item_id,
+  picture_url,
   quantity,
+  description,
   menu_items.name
   FROM carts
   JOIN cart_menu_items ON carts.id = cart_id
   JOIN menu_items ON menu_item_id = menu_items.id
   WHERE carts.id = $1
-  GROUP BY carts.id, menu_item_id, quantity, menu_items.name, menu_items.price;
+  GROUP BY carts.id, menu_item_id, quantity, menu_items.name, menu_items.price,picture_url, description;
   `, [id])
     .then(cart => {
       // console.log(cart);
-      return cart.rows[0];
+      return cart.rows;
     });
 };
 
@@ -53,4 +55,4 @@ const addToCart = (cartItemData) => {
       `, queryParams);
 };
 
-module.exports = { getCarts, createEmptyCart, addToCart };
+module.exports = { getCart, createEmptyCart, addToCart };

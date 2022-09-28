@@ -4,7 +4,7 @@ const cartQueries = require('../db/queries/carts');
 
 router.get('/:id', (req, res) => {
   console.log('req.id', req.params.id);
-  cartQueries.getCarts(req.params.id)
+  cartQueries.getCart(req.params.id)
     .then(cart => {
       res.json(cart);
     })

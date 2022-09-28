@@ -40,5 +40,31 @@ $(document).ready(function () {
   window.menuItems.addMenuItems = addMenuItems;
 
 
+  const $cartItems = $(`#full-cart-contents`);
+
+  window.$cartItems = $cartItems;
+  window.cartItems = {};
+
+  function addCartElement(item) {
+    $cartItems.append(item);
+  };
+
+  function clearCartItems() {
+    $cartItems.empty();
+  };
+
+  const addCartItems = function (cartItems) {
+    console.log("cart", cartItems);
+    clearCartItems();
+    for (let item of cartItems) {
+      const cartItemElement = cartItem.createCartElement(item);
+      addCartElement(cartItemElement);
+    }
+  };
+
+  window.cartItems.addCartItems = addCartItems;
+
+
+
 });
 

@@ -107,7 +107,7 @@ $(() => {
   $("#orderConfirmation").on("click", () => {
     console.log("cliked");
     $.post("/api/order").then(() => {
-      console.log("this worked");
+      views_manager.show("thanks");
     });
   });
 });

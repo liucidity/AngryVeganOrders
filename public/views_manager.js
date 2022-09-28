@@ -8,6 +8,7 @@ $(() => {
     window.$menuItems.detach();
     window.$preorder.detach();
     window.$checkout.detach();
+    window.$thanks.detach();
     $main.empty();
 
     switch (item) {
@@ -21,6 +22,10 @@ $(() => {
       case "checkout":
         $checkout.appendTo($main);
         break;
+      case "thanks":
+        $thanks.appendTo($main);
+        break;
+
       case "error": {
         views_manager.show("menu");
       }

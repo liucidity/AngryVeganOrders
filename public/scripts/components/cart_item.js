@@ -19,7 +19,6 @@ $(document).ready(function () {
         <span>${item.description}</span>
       </div>
       <form class="full-cart-form">
-        <div class="quantity">
           <input type="hidden" class="itemId" value="${item.menu_item_id}"
             name="${item.menu_item_id}" />
           <button class="plus-btn" type="button" name="button">
@@ -29,7 +28,6 @@ $(document).ready(function () {
           <button class="minus-btn" type="button" name="button">
           -
           </button>
-        </div>
       </form>
 
       <div class="total-price">$${item.item_totals}</div>

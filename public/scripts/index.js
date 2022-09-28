@@ -159,6 +159,25 @@ $(document).ready(function () {
     }
     );
   });
+  $(document).on('click', '.delete-btn', function (e) {
+    e.preventDefault();
+
+    const itemId = $(this).parent().siblings('.full-cart-form').children('.itemId')[0];
+    const itemIdValue = parseInt($(itemId).val());
+    // console.log(typeof (itemIdValue));
+    $.ajax({
+      method: "PUT",
+      url: `/api/carts/${currentCart}`,
+      data: { menu_item_id: itemIdValue }
+    }).done(() => {
+      $.get(`/api/carts/${currentCart}`, (cartData) => {
+        console.log('delete cartdata', cartData);
+        cartItems.addCartItems(cartData);
+        renderCartDrawer(cartData[0]);
+      })
+    })
+
+  });
 
 
   $(".cart-submit").click(function () {
@@ -174,6 +193,13 @@ $(document).ready(function () {
   });
   const renderCartDrawer = function (cartDrawerData) {
     console.log('cartDrawerData', cartDrawerData);
+
+    //WIP: bug fix on delete change back to 0 quantity and 0 subtotal
+    if (!cartDrawerData) {
+      $('#cart-total-quantity').text('0');
+      $('#cart-subtotal').text('0.00');
+      return;
+    }
     $('#cart-total-quantity').text(cartDrawerData.item_count);
     $('#cart-subtotal').text(cartDrawerData.subtotal);
   };

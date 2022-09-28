@@ -5,9 +5,9 @@ const client = require("twilio")(accountSid, authToken);
 const sendMessage = (phone) => {
   client.messages
     .create({
-      body: "this is a twilio test",
-      from: `${phone}`, //phone goes here <--
-      to: "+15875664191",
+      body: "Hey is this working?",
+      from: "+12495043092", //phone goes here <--
+      to: "+17788396088",
     })
     .then((message) => console.log(message.sid));
 };

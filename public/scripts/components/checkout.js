@@ -60,7 +60,7 @@ $(() => {
             <br />
             <p>TOTAL: {cart.total + tax}</p>
           </div>
-          <button type="submit" class="btn btn-success w-50 mt-2 mb-3">
+          <button type="submit" id='orderConfirmation' class="btn btn-success w-50 mt-2 mb-3">
             confirm order
           </button>
           <button type="submit" class="btn btn-danger mt-2 mb-3">
@@ -97,7 +97,7 @@ $(() => {
   const addCheckoutMenu = (cartData) => {
     console.log("running");
     clearCheckoutMenu();
-    const checkoutElement = createCheckout.createCheckout(cartData);
+    const checkoutElement = window.createCheckout.createCheckout(cartData);
     appendCheckoutElement(checkoutElement);
   };
 
@@ -105,6 +105,9 @@ $(() => {
 
   const data = []; // bring total and phone number for the user
   $("#orderConfirmation").on("click", () => {
-    $.post("/api/order", data).then(() => {});
+    console.log("cliked");
+    $.post("/api/order").then(() => {
+      console.log("this worked");
+    });
   });
 });

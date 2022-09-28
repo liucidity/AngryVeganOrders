@@ -1,5 +1,5 @@
 $(() => {
-  const $preorder = $(
+  const $preorderobj = $(
     `<div>
   <nav class="navbar navbar-light bg-light">
     <button class="btn"><i class="fa-solid fa-arrow-left"></i> Back</button>
@@ -44,7 +44,7 @@ $(() => {
 </div>
 `
   );
-  window.$preorder = $preorder;
+  window.$preorder = $preorderobj;
   //////////////////trello just form for cellphone input//////////////////////////
   const phoneInputField = document.querySelector("#phone");
   const phoneInput = window.intlTelInput(phoneInputField, {

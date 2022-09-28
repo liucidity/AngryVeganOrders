@@ -4,10 +4,11 @@ $(() => {
   window.views_manager = {};
 
   window.views_manager.show = function (item) {
-    $categorySelector.detach();
-    $menuItems.detach();
-    $preorder.detach();
-    $checkout.detach();
+    window.$categorySelector.detach();
+    window.$menuItems.detach();
+    window.$preorder.detach();
+    window.$checkout.detach();
+    $main.empty();
 
     switch (item) {
       case "menu":

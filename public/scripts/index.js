@@ -96,13 +96,9 @@ $(document).ready(function () {
       );
       return value - 1;
 
-
-
     });
 
-
   });
-
   $(document).on('click', '.plus-btn', function (e) {
     e.preventDefault();
 
@@ -130,7 +126,10 @@ $(document).ready(function () {
     });
   });
 
-
+  // WIP: BUG FIX: prevent individual cart item submit
+  $('.full-cart-form').on('submit', function () {
+    return false;
+  });
 
 
 

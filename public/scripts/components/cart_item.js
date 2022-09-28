@@ -18,7 +18,7 @@ $(document).ready(function () {
         <span>${item.name}</span>
         <span>${item.description}</span>
       </div>
-      <form class="full-cart-form" id="cart"
+      <form class="full-cart-form">
         <div class="quantity">
           <input type="hidden" class="itemId" value="${item.menu_item_id}"
             name="${item.menu_item_id}" />

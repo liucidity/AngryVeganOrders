@@ -21,7 +21,10 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  res(console.log(req.body()));
+  userQueries.createUser(req.body.phone).then((user) => {
+    console.log(user);
+    res.json(user);
+  });
 });
 
 module.exports = router;

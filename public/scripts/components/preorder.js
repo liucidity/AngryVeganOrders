@@ -55,16 +55,6 @@ $(() => {
   });
   const info = document.querySelector(".alert-info");
 
-  $("#numberInput").on("submit", function (event) {
-    event.preventDefault();
-    const data = $(this).serialize();
-    $.ajax({
-      method: "POST",
-      url: "/api/users",
-      data,
-    }).then(console.log("this works"));
-  });
-
   function getIp(callback) {
     fetch("https://ipinfo.io/json?token=<your token>", {
       headers: { Accept: "application/json" },
@@ -77,6 +67,15 @@ $(() => {
       })
       .then((resp) => callback(resp.country));
   }
+  //////////////////submit number and creates an user/////////////////////////////////////////
+  $("#numberInput").on("submit", function (event) {
+    event.preventDefault();
+    const data = $(this).serialize();
+
+    $.post("http://localhost:8080/api/users", data).then((data) => {
+      console.log(data);
+    });
+  });
 
   // getAllListings(data).then(function( json ) {
   //   propertyListings.addProperties(json.properties);

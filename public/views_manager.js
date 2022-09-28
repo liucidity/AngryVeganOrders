@@ -4,6 +4,8 @@ $(() => {
   window.views_manager = {};
 
   window.views_manager.show = function (item) {
+    $categorySelector.detach();
+    $menuItems.detach();
     $preorder.detach();
 
     switch (item) {

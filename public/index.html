@@ -48,21 +48,13 @@
   </nav>
 
   <div class="body-container">
-    <!-- categories scroll -->
-    <div>
-      <div id="categories-list" class="list-group">
-        <a class="list-group-item list-group-item-action" href="#Vegan Burgers">Burgers</a>
-        <a class="list-group-item list-group-item-action" href="#Fresh Juice">Juices</a>
-      </div>
-    </div>
-
     <main id="main-content">
 
     </main>
   </div>
 
   <!-- cart footer -->
-
+  <!-- cart drawer -->
   <div class="cart btn btn-primary col-12 justify-content-between" type="button" data-bs-toggle="offcanvas"
     id="cart-drawer" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
     <div>
@@ -75,7 +67,7 @@
     </div>
 
   </div>
-
+  <!-- offcanvas -->
   <div class="offcanvas offcanvas-bottom h-75" tabindex="-1" id="offcanvasBottom"
     aria-labelledby="offcanvasBottomLabel">
     <div class="offcanvas-header">
@@ -85,29 +77,30 @@
     <div class="offcanvas-body small" id="full-cart-contents">
       ...
     </div>
-  </div>
+    <div>
+      <div class="cart-submit btn btn-primary col-12 justify-content-between" type="button" data-bs-toggle="offcanvas"
+        id="cart-drawer" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
+        submit
+      </div>
+    </div>
 
-  <!-- js  -->
-  <script src="./views_manager.js"></script>
-  <script src="./scripts/index.js"></script>
-  <!-- <script src="./scripts/numberInput.js"></script> -->
-  <!-- components  -->
-  <script type="text/javascript" src="./scripts/components/preorder.js"></script>
-  <script type="text/javascript" src="./scripts/components/menu_item.js"></script>
-  <script type="text/javascript" src="./scripts/components/category_heading.js"></script>
-  <script type="text/javascript" src="./scripts/components/category_selector.js"></script>
+    <!-- js  -->
+    <script src="./views_manager.js"></script>
+    <script src="./scripts/index.js"></script>
+    <!-- components  -->
+    <script type="text/javascript" src="./scripts/components/preorder.js"></script>
+    <script type="text/javascript" src="./scripts/components/menu_item.js"></script>
+    <script type="text/javascript" src="./scripts/components/category_heading.js"></script>
+    <script type="text/javascript" src="./scripts/components/category_selector.js"></script>
 
-  <script type="text/javascript" src="./scripts/components/menu_screen.js"></script>
-  <script type="text/javascript" src="./scripts/components/cart_item.js"></script>
-  <!-- <script type="text/javascript" src="./scripts/app.js"></script> -->
-  <script type="text/javascript" src="./scripts/quantity-control.js"></script>
+    <script type="text/javascript" src="./scripts/components/menu_screen.js"></script>
+    <script type="text/javascript" src="./scripts/components/cart_item.js"></script>
+    <script type="text/javascript" src="./scripts/quantity-control.js"></script>
 </body>
 
 
 
 <!-- js  -->
-<!-- <script src="./views_manager.js s"></script>
-    <script src="./scripts/numberInput.js"></script> -->
 <!-- components  -->
 <script type="text/javascript" src="./scripts/components/preorder.js"></script>
 <script src="./scripts/components/checkout.js"></script>

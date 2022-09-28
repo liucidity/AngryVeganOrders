@@ -134,6 +134,10 @@ $(document).ready(function () {
   });
 
 
+  $(".cart-submit").click(function () {
+    views_manager.show('preorder');
+  });
+
 
   $("#cart-drawer").click(function () {
     $.get(`/api/carts/${currentCart}`, (cartData) => {

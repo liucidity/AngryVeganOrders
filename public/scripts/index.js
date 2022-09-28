@@ -78,8 +78,6 @@ $(document).ready(function () {
 
   });
 
-
-
   $(document).on('click', '.plus-btn', function (e) {
     e.preventDefault();
 
@@ -87,14 +85,10 @@ $(document).ready(function () {
       if (value > 99) {
         return value;
       }
-
       const itemId = $(this).siblings('.itemId')[0];
       const itemIdValue = $(itemId).val();
       const quantityValue = 1;
       const itemData = { itemId: itemIdValue, quantity: quantityValue };
-
-
-
       $.ajax({
         method: "POST",
         url: `/api/carts/${currentCart}`,
@@ -109,10 +103,6 @@ $(document).ready(function () {
       return parseInt(value, 10) + 1;
 
     });
-
-
-
-
   });
 
 

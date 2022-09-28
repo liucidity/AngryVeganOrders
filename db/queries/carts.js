@@ -57,4 +57,15 @@ const addToCart = (cartItemData) => {
   );
 };
 
-module.exports = { getCart, createEmptyCart, addToCart };
+const removeFromCart = (deleteItemData) => {
+  console.log('deleteItemData', deleteItemData);
+  let queryParams = [];
+  for (let key in deleteItemData) {
+    queryParams.push(deleteItemData[key]);
+  }
+  console.log("dqp", queryParams);
+
+  return db.query(`DELETE FROM cart_menu_items WHERE cart_id = $1 AND menu_item_id = $2`, queryParams);
+};
+
+module.exports = { getCart, createEmptyCart, addToCart, removeFromCart };

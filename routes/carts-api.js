@@ -36,4 +36,17 @@ router.post('/:id', (req, res) => {
     });
 });
 
+router.put('/:id', (req, res) => {
+  console.log(req.params.id);
+  console.log('body', req.body);
+  cartQueries.removeFromCart({ cart_id: req.params.id, ...req.body })
+    .then(cart => {
+      console.log('delete cart data', cart);
+      res.json(cart);
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+});
+
 module.exports = router;

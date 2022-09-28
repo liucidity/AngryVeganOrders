@@ -40,7 +40,7 @@ $(() => {
     <div class="card-footer text-muted"></div>
   </div>
  <script type="text/javascript" src="./scripts/components/preorder.js"></script>
-
+<script src="./scripts/components/checkout.js"></script>
 </body>
 `
   );
@@ -75,11 +75,7 @@ $(() => {
     const data = $(this).serialize();
 
     $.post("/api/users", data).then((d) => {
-      console.log(d);
+      views_manager.show("checkout");
     });
   });
-  // getAllListings(data).then(function( json ) {
-  //   propertyListings.addProperties(json.properties);
-  //   views_manager.show('preorders');
-  //   a}
 });

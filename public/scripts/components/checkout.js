@@ -82,12 +82,15 @@ $(() => {
       type="text/javascript"
       src="./scripts/components/preorder.js"
     ></script>
+    <script src="./scripts/components/checkout.js"></script>
   </body>`
     );
+    window.$checkout = $checkout;
     return $check;
   };
+
   const data = []; // bring total and phone number for the user
   $("#orderConfirmation").on("click", () => {
-    $.post("http://localhost:8080/api/order", data).then(() => {});
+    $.post("/api/order", data).then(() => {});
   });
 });

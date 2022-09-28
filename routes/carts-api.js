@@ -6,6 +6,7 @@ router.get('/:id', (req, res) => {
   console.log('req.id', req.params.id);
   cartQueries.getCart(req.params.id)
     .then(cart => {
+      console.log('get cart from :id ', cart);
       res.json(cart);
     })
     .catch(err => {
@@ -27,6 +28,7 @@ router.get('/', (req, res) => {
 router.post('/:id', (req, res) => {
   cartQueries.addToCart({ cart_id: req.params.id, ...req.body })
     .then(cart => {
+      console.log('cart from post :id', cart);
       res.json(cart);
     })
     .catch(err => {

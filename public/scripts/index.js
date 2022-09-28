@@ -24,6 +24,19 @@ $(document).ready(function () {
   };
   loadMenu();
 
+
+  //prevent quantity selector from exceeding 100 and going below 1
+  $(document).on('keydown keyup change', '.menu-item-quantity', function (e) {
+    if ($(this).val() > 100) {
+      e.preventDefault();
+      $(this).val(100);
+    }
+    if ($(this).val() < 1) {
+      $(this).val(null);
+    }
+
+  });
+
   $(document).on('click', '.subtract-quantity', function (e) {
     e.preventDefault();
     $(this).siblings('.menu-item-quantity').val(function (n, value) {
@@ -37,13 +50,25 @@ $(document).ready(function () {
     e.preventDefault();
 
     $(this).siblings('.menu-item-quantity').val(function (n, value) {
-      if (value > 99) {
-        return value;
+      console.log(value);
+      if (parseInt(value, 10) > 99) {
+        return parseInt(value, 10);
       }
       return parseInt(value, 10) + 1;
     });
   });
 
+
+  $(document).on('keydown keyup change', '.cart-item-quantity', function (e) {
+    if ($(this).val() > 100) {
+      e.preventDefault();
+      $(this).val(100);
+    }
+    if ($(this).val() < 1) {
+      $(this).val(null);
+    }
+
+  });
   $(document).on('click', '.minus-btn', function (e) {
     e.preventDefault();
     $(this).siblings('.cart-item-quantity').val(function (n, value) {
@@ -115,6 +140,7 @@ $(document).ready(function () {
     const itemIdValue = $(itemId).val();
     const quantity = $(this).siblings('.menu-item-quantity')[0];
     const quantityValue = $(quantity).val();
+    console.log('quantityValue', quantityValue);
     const itemData = { itemId: itemIdValue, quantity: quantityValue };
 
     // $.post(`/api/carts/${currentCart}`, function () {
@@ -125,11 +151,13 @@ $(document).ready(function () {
       method: "POST",
       url: `/api/carts/${currentCart}`,
       data: itemData
-    }).done(
-      $.get(`/api/carts/${currentCart}`, (cartData) => {
-        console.log('cartdata', cartData);
-        renderCartDrawer(cartData[0]);
-      })
+    }).done(() => {
+      $.get(`/api/carts/${currentCart}`, (cartDrawerData) => {
+        console.log('cartdata', cartDrawerData);
+        //if undefined return early
+        renderCartDrawer(cartDrawerData[0]);
+      });
+    }
     );
   });
 
@@ -145,9 +173,9 @@ $(document).ready(function () {
       cartItems.addCartItems(cartData);
     });
   });
-  const renderCartDrawer = function (cartData) {
-    console.log('cartData', cartData);
-    $('#cart-total-quantity').text(cartData.item_count);
-    $('#cart-subtotal').text(cartData.subtotal);
-  }
+  const renderCartDrawer = function (cartDrawerData) {
+    console.log('cartDrawerData', cartDrawerData);
+    $('#cart-total-quantity').text(cartDrawerData.item_count);
+    $('#cart-subtotal').text(cartDrawerData.subtotal);
+  };
 });

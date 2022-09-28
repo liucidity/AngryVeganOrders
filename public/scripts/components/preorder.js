@@ -1,6 +1,6 @@
 $(() => {
   const $preorder = $(
-    `<body>
+    `<div>
   <nav class="navbar navbar-light bg-light">
     <button class="btn"><i class="fa-solid fa-arrow-left"></i> Back</button>
     <a class="navbar-brand" href="#">
@@ -40,8 +40,8 @@ $(() => {
     <div class="card-footer text-muted"></div>
   </div>
  <script type="text/javascript" src="./scripts/components/preorder.js"></script>
-<script src="./scripts/components/checkout.js"></script>
-</body>
+
+</div>
 `
   );
   window.$preorder = $preorder;
@@ -69,12 +69,15 @@ $(() => {
       .then((resp) => callback(resp.country));
   }
   //////////////////submit number and creates an user/////////////////////////////////////////
+
   $("#numberInput").on("submit", function (event) {
     event.preventDefault();
     console.log("this is the form");
     const data = $(this).serialize();
 
     $.post("/api/users", data).then((d) => {
+      console.log(d);
+      checkout.addCheckoutMenu(d);
       views_manager.show("checkout");
     });
   });

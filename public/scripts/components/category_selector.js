@@ -2,12 +2,11 @@ $(document).ready(function () {
   window.categorySelector = {};
 
   const createSelectorElement = function (category) {
-
     let $categorySelect = $(
       `
        <a class="list-group-item list-group-item-action" href="#${category.name}">${category.name}</a>
       `
-    )
+    );
     return $categorySelect;
   };
   window.categorySelector.createSelectorElement = createSelectorElement;
@@ -23,16 +22,17 @@ window.categoriesSelector = {};
 
 function addCategorySelectElement(category) {
   $categorySelector.append(category);
-};
+}
 function clearCategorySelector() {
   $categorySelector.empty();
-};
+}
 
 const addCategorySelector = function (categoryNames) {
   clearCategorySelector();
   for (let category of categoryNames) {
     console.log(category);
-    const categorySelectorElement = categorySelector.createSelectorElement(category);
+    const categorySelectorElement =
+      categorySelector.createSelectorElement(category);
     addCategorySelectElement(categorySelectorElement);
   }
 };

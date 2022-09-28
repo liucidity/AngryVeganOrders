@@ -1,11 +1,8 @@
-const { getCarts } = require("../../../db/queries/carts");
-
 $(() => {
-  const $checkout = () => {
+  window.createCheckout = {};
+  const createCheckouts = () => {
     const $check = $(
-      ` <body>
-    <header id="page-header" class="page-header"></header>
-    <main id="main-content">
+      `
       <nav class="navbar navbar-light bg-light">
         <button class="btn"><i class="fa-solid fa-arrow-left"></i> Back</button>
         <a class="navbar-brand" href="#">
@@ -71,23 +68,40 @@ $(() => {
           </button>
           <div class="card-footer text-muted">Angry Vegan</div>
         </div>
-      </div>
-    </main>
 
-    <!-- js  -->
-    <script src="./views_manager.js s"></script>
-    <script src="./scripts/numberInput.js"></script>
-    <!-- components  -->
     <script
       type="text/javascript"
-      src="./scripts/components/preorder.js"
+      src="./scripts/components/checkout.js"
     ></script>
-    <script src="./scripts/components/checkout.js"></script>
-  </body>`
+      </div>
+  `
     );
-    window.$checkout = $checkout;
     return $check;
   };
+  window.createCheckout.createCheckout = createCheckouts; //// category selection use it as an example!!
+
+  const $checkout = $("<div></div>");
+
+  window.$checkout = $checkout;
+
+  console.log(window.$checkout);
+
+  window.checkout = {};
+
+  const appendCheckoutElement = (data) => {
+    return $checkout.append(data);
+  };
+  const clearCheckoutMenu = () => {
+    return $checkout.empty();
+  };
+  const addCheckoutMenu = (cartData) => {
+    console.log("running");
+    clearCheckoutMenu();
+    const checkoutElement = createCheckout.createCheckout(cartData);
+    appendCheckoutElement(checkoutElement);
+  };
+
+  window.checkout.addCheckoutMenu = addCheckoutMenu;
 
   const data = []; // bring total and phone number for the user
   $("#orderConfirmation").on("click", () => {

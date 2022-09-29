@@ -11,10 +11,10 @@ $(document).ready(function () {
         <!-- order # | order total | user phone number -->
         <div class="row">
           <span>
-            ${order.id}
+            Order: #${order.id}
           </span>
           <span>
-            ${order.user}
+            Phone: ${order.phone}
           </span>
         </div>
         <div>
@@ -22,7 +22,7 @@ $(document).ready(function () {
         ${order.time}
         </span
         <span>
-        $${order.total}
+        $${order.subtotal}
         </span
         </div>
       </button>
@@ -83,7 +83,7 @@ $(document).ready(function () {
     $("#restaurant-container").prepend(orderAccordion);
   };
   const addRowToItemTable = function (orderAccordion, orderId) {
-    $(`#${orderId}`).append(orderAccordion);
+    $(`#table${orderId}`).append(orderAccordion);
   };
 
 
@@ -98,8 +98,9 @@ $(document).ready(function () {
         const orderElement = createOrderAccordion(order);
         addOrderToAccordion(orderElement);
 
-        $.get(`/api/carts/${cartId}`, (cartOrderItems) => {
-          for (let item of cartOrderItems) {
+        $.get(`/api/carts/${cartId}`, (cartAndItemData) => {
+          console.log('cartAndItemData', cartAndItemData);
+          for (let item of cartAndItemData) {
             const orderItemElement = createOrderItemRowElement(item);
             addRowToItemTable(orderItemElement, orderId);
           }
@@ -149,72 +150,44 @@ $(document).ready(function () {
     }
 
   });
-
   $(document).on("click", ".confirm-order", function (e) {
     e.preventDefault();
     const orderId = $(this).siblings(".orderId")[0];
     const orderIdValue = $(orderId).val();
     const time = $(this).siblings(".order-prep-time")[0];
-    const timeValue = $(time).val();
+    const timeValue = $(time).val() + " minutes";
     console.log("orderId", orderId);
     console.log("orderIdValue", orderIdValue);
     console.log("time", time);
     console.log("timeValue", timeValue);
-    // const itemData = { itemId: itemIdValue, quantity: quantityValue };
+    const orderData = { orderId: orderIdValue, time: timeValue };
 
-    // $.post(`/api/carts/${currentCart}`, function () {
-    //   console.log(itemData);
-    //   $(this).siblings('.menu-item-quantity').val();
-    // });
-    // $.ajax({
-    //   method: "POST",
-    //   url: `/api/carts/${currentCart}`,
-    //   data: itemData,
-    // }).done(() => {
-    //   $.get(`/api/carts/${currentCart}`, (cartDrawerData) => {
-    //     console.log("cartdata", cartDrawerData);
-    //     //if undefined return early
-    //     renderCartDrawer(cartDrawerData[0]);
-    //   });
-    // });
+    // update order with pickup time
+    $.ajax({
+      method: "PUT",
+      url: `/restaurant/orders/${orderIdValue}`,
+      data: orderData,
+    }).done((pickupTime) => {
+      $.post("/api/order/update", pickupTime);
+      //get the updated pickup time back from database
+      // $.get(`/restaurant/orders`, (updatedOrderData) => {
+
+      //   const pickupTime = updatedOrderData.pickup_time;
+      //   console.log("updated", updatedOrderData);
+      console.log("pickupTime", pickupTime);
+
+      //   //if undefined return early
+      //   // post to ordersAPI to send text to user with pickup time
+      //   $.post("/api/order/update", pickupTime);
+
+      // });
+    });
   });
 
-
-
-  // $(document).on('click', '.accordion-button', function (e) {
-  //   e.preventDefault();
-
-  // });
-
-  // function addCategoryElement(category) {
-  //   $menuItems.append(category)
-  // }
-  // function addMenuElement(item) {
-  //   $menuItems.append(item)
-  // }
-
-  // function clearMenuItems() {
-  //   $menuItems.empty();
-  // }
-
-  // const addMenuItems = function (categoryNames, menuItems) {
-  //   clearMenuItems();
-  //   for (let category of categoryNames) {
-  //     const categoryElement = categoryHeading.createCategoryElement(category);
-  //     addCategoryElement(categoryElement);
-  //     // $('#menu-items-container').append(createCategoryElement(category));
-  //     for (let item of menuItems) {
-  //       if (item.category === category.name) {
-  //         const itemElement = menuItem.createMenuElement(item);
-  //         addMenuElement(itemElement);
-  //         // $('#menu-items-container').append(createMenuElement(item));
-  //       }
-  //     }
-  //   }
-  // };
-
-
-
-
-
 });
+
+
+
+
+
+

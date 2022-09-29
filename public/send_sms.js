@@ -4,7 +4,7 @@ const client = require("twilio")(accountSid, authToken);
 
 // send order data and phone
 const sendMessage = (orderTextData) => {
-
+  console.log('orderTextData', orderTextData);
   client.messages
     .create({
       body: `Your Order: #${orderTextData.id} has been received, We will update you with a pickup time shortly! 🕛`,

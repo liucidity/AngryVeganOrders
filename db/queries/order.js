@@ -3,8 +3,9 @@ const db = require("../connection");
 
 const makeOrder = (id) => {
   console.log("ordered made");
-  return db.query(`INSERT INTO orders(cart_id) VALUES($1) RETURNING *`, [id]);
+  return db.query(`INSERT INTO orders(cart_id) VALUES($1) RETURNING *, (SELECT phone FROM users JOIN carts ON users.id = carts.user_id WHERE carts.id = $1);`, [id]);
 };
+
 
 
 // SELECT orders.id,

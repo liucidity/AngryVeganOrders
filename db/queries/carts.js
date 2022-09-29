@@ -18,13 +18,15 @@ const getCart = (id) => {
   picture_url,
   quantity,
   description,
-  menu_items.name
+  menu_items.name,
+  users.phone
   FROM carts
   JOIN cart_menu_items ON carts.id = cart_id
   JOIN menu_items ON menu_item_id = menu_items.id
+  LEFT JOIN users ON users.id = carts.user_id
   WHERE carts.id = $1
-  GROUP BY carts.id, menu_item_id, quantity, menu_items.name, menu_items.price,picture_url, description;
-  `,
+  GROUP BY carts.id, menu_item_id, quantity, menu_items.name, menu_items.price,picture_url, description, users.phone;
+ `,
       [id]
     )
     .then((cart) => {

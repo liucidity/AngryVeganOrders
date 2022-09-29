@@ -7,7 +7,7 @@ const sendMessage = (phone) => {
     .create({
       body: "Hey is this working?",
       from: "+12495043092", //phone goes here <--
-      to: "+17788396088",
+      to: phone,
     })
     .then((message) => console.log(message.sid));
 };

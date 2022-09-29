@@ -5,13 +5,11 @@ const { sendMessage } = require("../public/send_sms");
 router.get("/", (req, res) => {});
 
 router.post("/", (req, res) => {
-  sendMessage(req.body.telephone);
-  return orderQueries
-    .makeOrder(/*req.body.id??? how to link order with cart? */)
-    .then((order) => {
-      console.log("from router:", order);
-      res.json(order);
-    });
+  sendMessage(req.body.phone);
+  return orderQueries.makeOrder(req.body.id).then((order) => {
+    console.log("from router:", order);
+    res.json(order);
+  });
 });
 
 module.exports = router;

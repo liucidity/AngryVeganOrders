@@ -183,8 +183,9 @@ $(document).ready(function () {
   });
 
   $("#cart-drawer").click(function () {
+    console.log(currentCart);
     $.get(`/api/carts/${currentCart}`, (cartData) => {
-      // console.log("cartdata", cartData);
+      console.log("cartdata", cartData);
       cartItems.addCartItems(cartData);
     });
   });
@@ -192,11 +193,11 @@ $(document).ready(function () {
     // console.log("cartDrawerData", cartDrawerData);
 
     //WIP: bug fix on delete change back to 0 quantity and 0 subtotal
-    if (!cartDrawerData) {
-      $("#cart-total-quantity").text("0");
-      $("#cart-subtotal").text("0.00");
-      return;
-    }
+    // if (!cartDrawerData) {
+    //   $("#cart-total-quantity").text("0");
+    //   $("#cart-subtotal").text("0.00");
+    //   return;
+    // }
     $("#cart-total-quantity").text(cartDrawerData.item_count);
     $("#cart-subtotal").text(cartDrawerData.subtotal);
   };

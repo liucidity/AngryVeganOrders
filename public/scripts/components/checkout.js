@@ -39,6 +39,7 @@ $(() => {
                     <div class="cart-functions d-flex justify-content-between">
                       <div>
                         <div class="item-price">${item.item_totals}</div>
+
                       </div>
                     </div>
                   </div>
@@ -51,6 +52,8 @@ $(() => {
       $check.appendTo($list);
     }
     const $final = $(` <div class="card">
+           <p>Oreder id: ${items[0].id}</p>
+
           <p>subtotal: ${items[0].subtotal}</p>
           <br />
           <p>tax: ${items[0].subtotal * 0.12}</p>
@@ -58,6 +61,12 @@ $(() => {
           <p>TOTAL: ${
             Number(items[0].subtotal) + Number(items[0].subtotal * 0.12)
           }</p>
+          <input type="hidden" id="phoneN" name="custId" value="${
+            items[0].phone
+          }">
+              <input type="hidden" id="cId" name="custId" value="${
+                items[0].id
+              }">
               </div>
               <button type="submit" id='orderConfirmation' class="btn btn-success w-50 mt-2 mb-3">
                 confirm order
@@ -66,8 +75,9 @@ $(() => {
                 Edit cart
               </button>
               <div class="card-footer text-muted">Angry Vegan</div>
-            </div>
 
+
+              </div>
         <script
           type="text/javascript"
           src="./scripts/components/checkout.js"
@@ -108,10 +118,11 @@ $(() => {
 
   window.checkout.addCheckoutMenu = addCheckoutMenu;
 
-  const data = []; // bring total and phone number for the user
+  // bring total and phone number for the user
   $("#orderConfirmation").on("click", () => {
-    // console.log("cliked");
-    $.post("/api/order").then(() => {
+    const data = { id: $("#cId").val(), phone: $("#phoneN").val() };
+    console.log("data", data);
+    $.post("/api/order", data).then(() => {
       views_manager.show("thanks");
     });
   });

@@ -80,6 +80,7 @@ $(() => {
 
       $.post("/api/carts/", d).then((data) => {
         console.log("cartinfo?;", data);
+        checkout.addCheckoutMenu(data);
         views_manager.show("checkout");
       });
     });

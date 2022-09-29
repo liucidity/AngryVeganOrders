@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   userQueries.createUser(req.body.phone).then((user) => {
-    console.log("user:", user);
+    req.session = null;
     res.json(user);
   });
 });

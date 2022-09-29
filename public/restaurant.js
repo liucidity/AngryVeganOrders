@@ -114,6 +114,13 @@ $(document).ready(function () {
   };
   loadOrders();
 
+  // setInterval(() => {
+  //   $("#restaurant-container").empty();
+  //   loadOrders();
+
+  // }, 5000);
+
+
 
   // -------------------------------------------------- LIVE CLICK LISTENERS
 
@@ -161,13 +168,7 @@ $(document).ready(function () {
     // remove and put at bottom of list
     $("#completed-container").prepend($(`.orderItem${orderIdValue}`));
 
-
-
-
-
-
     const orderData = { orderId: orderIdValue, time: timeValue };
-
     // update order with pickup time
     $.ajax({
       method: "PUT",
@@ -190,7 +191,6 @@ $(document).ready(function () {
     });
   });
 
-  module.exports = { loadOrders };
 });
 
 

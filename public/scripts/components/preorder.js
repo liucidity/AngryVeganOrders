@@ -74,6 +74,7 @@ $(() => {
     event.preventDefault();
     console.log("this is the form");
     const data = $(this).serialize();
+    console.log('number form data" ', data);
 
     $.post("/api/users", data).then((d) => {
       console.log(d);

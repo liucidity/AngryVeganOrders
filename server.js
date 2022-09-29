@@ -26,6 +26,7 @@ app.use(
 );
 app.use(express.static("public"));
 
+
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const userApiRoutes = require("./routes/users-api");
@@ -36,6 +37,8 @@ const categoryApiRoutes = require("./routes/categories-api");
 const cartApiRoutes = require("./routes/carts-api");
 const orderRoutes = require("./routes/order-api");
 const messageApiRoutes = require("./routes/message-api");
+
+
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
@@ -47,18 +50,25 @@ app.use("/api/categories", categoryApiRoutes);
 app.use("/api/carts", cartApiRoutes);
 app.use("/api/order", orderRoutes);
 app.use("/api/message", messageApiRoutes);
+
+// -------------------------------------------------- RESTAURANT
+const restaurantDashboardRoute = require("./routes/restaurant");
+app.use("/restaurant", restaurantDashboardRoute);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-app.get("/", (req, res) => {
-  res.redirect("/");
-});
 
-app.get("/preorder", (req, res) => {
-  res.render("preorder");
+// app.get("/preorder", (req, res) => {
+//   res.render("preorder");
+// });
+
+
+
+app.get("*", (req, res) => {
+  res.redirect("/");
 });
 
 app.listen(PORT, () => {

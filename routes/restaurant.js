@@ -18,6 +18,27 @@ router.get('/orders', (req, res) => {
       console.log(err.message);
     });
 });
+// router.get('/orders/:id', (req, res) => {
+//   orderQueries.getOrders(req.params.id)
+//     .then((orders) => {
+//       res.json(orders.rows);
+//     }).catch((err) => {
+//       console.log(err.message);
+//     });
+// });
+
+
+router.put('/orders/:id', (req, res) => {
+  console.log(req.params.id);
+  console.log(req.body);
+  orderQueries.updateOrder({ ...req.body })
+    .then((order) => {
+      res.json(order.rows[0]);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+})
 
 
 module.exports = router;

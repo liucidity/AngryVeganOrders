@@ -1,3 +1,4 @@
+const { QueryPage } = require("twilio/lib/rest/autopilot/v1/assistant/query");
 const db = require("../connection");
 
 const makeOrder = (id) => {
@@ -6,12 +7,48 @@ const makeOrder = (id) => {
 };
 
 
-
-
-
+// SELECT orders.id,
+//   carts.id AS cart_id,
+//   menu_items.name,
+//   quantity,
+//   (SELECT SUM(price*quantity) FROM menu_items
+//     JOIN cart_menu_items ON menu_item_id = menu_items.id WHERE cart_id = orders.cart_id) AS subtotal,
+//   user_id,
+//   users.phone,
+//   time,
+//   updated_at,
+//   pickup_time
+//   FROM orders
+//   LEFT JOIN carts ON carts.id = cart_id
+//   JOIN cart_menu_items ON carts.id = orders.cart_id
+//   JOIN menu_items ON menu_item_id = menu_items.id
+//   JOIN users ON users.id = carts.user_id
+//   GROUP BY orders.id, carts.id, time, updated_at, pickup_time, user_id, users.phone, quantity, menu_items.name;
 
 
 const getOrders = function () {
-  return db.query(`SELECT * FROM orders`);
+  return db.query(`
+  SELECT *,
+  (SELECT SUM(price*quantity) FROM menu_items
+  JOIN cart_menu_items ON menu_item_id = menu_items.id WHERE cart_id = orders.cart_id) AS subtotal,
+  (SELECT phone FROM users JOIN carts ON users.id = carts.user_id WHERE carts.id = orders.cart_id) AS phone
+  FROM orders;
+  `);
 };
-module.exports = { makeOrder, getOrders };
+
+const updateOrder = function (updateData) {
+  let queryParams = [];
+  for (let key in updateData) {
+    queryParams.push(updateData[key]);
+  }
+  console.log(typeof queryParams[1]);
+
+
+  return db.query(`
+  UPDATE orders
+  SET pickup_time = NOW() + interval '${queryParams[1]} minutes'
+  WHERE id = ${queryParams[0]}
+  RETURNING id, pickup_time;
+  `);
+};
+module.exports = { makeOrder, getOrders, updateOrder };

@@ -122,7 +122,9 @@ $(() => {
   $("#orderConfirmation").on("click", () => {
     const data = { id: $("#cId").val(), phone: $("#phoneN").val() };
     console.log("data", data);
-    $.post("/api/order", data).then(() => {
+    $.post("/api/order", data.id).then((orderData) => {
+      console.log("orderdata:", orderData);
+      thanks.addThanksPage(orderData.id);
       views_manager.show("thanks");
     });
   });

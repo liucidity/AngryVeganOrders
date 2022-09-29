@@ -3,10 +3,11 @@ const db = require("../connection");
 
 const makeOrder = (id) => {
   console.log("ordered made");
-  return db.query(`INSERT INTO orders(cart_id) VALUES($1) RETURNING *, (SELECT phone FROM users JOIN carts ON users.id = carts.user_id WHERE carts.id = $1);`, [id]);
+  return db.query(
+    `INSERT INTO orders(cart_id) VALUES($1) RETURNING *, (SELECT phone FROM users JOIN carts ON users.id = carts.user_id WHERE carts.id = $1);`,
+    [id]
+  );
 };
-
-
 
 // SELECT orders.id,
 //   carts.id AS cart_id,
@@ -26,7 +27,6 @@ const makeOrder = (id) => {
 //   JOIN users ON users.id = carts.user_id
 //   GROUP BY orders.id, carts.id, time, updated_at, pickup_time, user_id, users.phone, quantity, menu_items.name;
 
-
 const getOrders = function () {
   return db.query(`
   SELECT *,
@@ -37,13 +37,17 @@ const getOrders = function () {
   `);
 };
 
+const getOrderById = (id) => {
+  console.log("this is the id:", id);
+  return db.query(`SELECT * FROM orders WHERE id = $1;`, [id]);
+};
+
 const updateOrder = function (updateData) {
   let queryParams = [];
   for (let key in updateData) {
     queryParams.push(updateData[key]);
   }
   console.log(typeof queryParams[1]);
-
 
   return db.query(`
   UPDATE orders
@@ -52,4 +56,4 @@ const updateOrder = function (updateData) {
   RETURNING id, pickup_time;
   `);
 };
-module.exports = { makeOrder, getOrders, updateOrder };
+module.exports = { makeOrder, getOrders, updateOrder, getOrderById };

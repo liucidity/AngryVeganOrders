@@ -11,13 +11,14 @@ $(() => {
             <br />
             <br />
             <h5>order details:</h5>
-            <p>order id: ${data.id}</p>
+            <p>order id: ${data.id} order total = ${}</p>
             <p>
               pickup time: ${
                 data.pickup_time ? data.pickup_time : `waiting for restaurant`
               }
 
             </p>
+            <p>
           </div>
         </div>
 </div>

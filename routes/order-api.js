@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const orderQueries = require("../db/queries/order");
 const { sendMessage, sendAlertOwner, sendUpdate } = require("../public/send_sms");
+// const { loadOrders } = require("../public/restaurant");
 
 
 router.post("/", (req, res) => {

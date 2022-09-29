@@ -3,10 +3,9 @@ $(document).ready(function () {
   const createOrderAccordion = function (order) {
 
     let $order = $(`
-  <!-- accordion item -->
-  <div class="accordion-item">
+  <div class="accordion-item orderItem${order.id}">
     <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button justify-content-between collapsed" type="button" data-bs-toggle="collapse"
+      <button class="accordion-button header${order.id} justify-content-between collapsed" type="button" data-bs-toggle="collapse"
         data-bs-target="#collapse${order.id}" aria-expanded="true" aria-controls="collapse${order.id}">
         <!-- order # | order total | user phone number -->
         <div class="row">
@@ -80,7 +79,7 @@ $(document).ready(function () {
 
 
   const addOrderToAccordion = function (orderAccordion) {
-    $("#restaurant-container").prepend(orderAccordion);
+    $("#restaurant-container").append(orderAccordion);
   };
   const addRowToItemTable = function (orderAccordion, orderId) {
     $(`#table${orderId}`).append(orderAccordion);
@@ -156,10 +155,17 @@ $(document).ready(function () {
     const orderIdValue = $(orderId).val();
     const time = $(this).siblings(".order-prep-time")[0];
     const timeValue = $(time).val() + " minutes";
-    console.log("orderId", orderId);
-    console.log("orderIdValue", orderIdValue);
-    console.log("time", time);
-    console.log("timeValue", timeValue);
+
+    //turn color yellow
+    $(`.header${orderIdValue}`).css("background-color", "lemonchiffon");
+    // remove and put at bottom of list
+    $("#completed-container").prepend($(`.orderItem${orderIdValue}`));
+
+
+
+
+
+
     const orderData = { orderId: orderIdValue, time: timeValue };
 
     // update order with pickup time
@@ -184,6 +190,7 @@ $(document).ready(function () {
     });
   });
 
+  module.exports = { loadOrders };
 });
 
 

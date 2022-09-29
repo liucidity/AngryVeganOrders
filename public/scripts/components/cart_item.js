@@ -1,9 +1,8 @@
 $(document).ready(function () {
-
   window.cartItem = {};
 
   const createCartElement = function (item) {
-    console.log('create cart element item: ', item);
+    // console.log('create cart element item: ', item);
     let $cartItem = $(`
     <div class="item">
       <div class="buttons">
@@ -36,5 +35,4 @@ $(document).ready(function () {
     return $cartItem;
   };
   window.cartItem.createCartElement = createCartElement;
-
 });

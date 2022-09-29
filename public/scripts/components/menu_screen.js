@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
   let currentCart = null;
   const $menuItems = $(`
     <section id="menu-items-container">
@@ -10,12 +9,11 @@ $(document).ready(function () {
   window.$menuItems = $menuItems;
   window.menuItems = {};
 
-
   function addCategoryElement(category) {
-    $menuItems.append(category)
+    $menuItems.append(category);
   }
   function addMenuElement(item) {
-    $menuItems.append(item)
+    $menuItems.append(item);
   }
 
   function clearMenuItems() {
@@ -39,7 +37,6 @@ $(document).ready(function () {
   };
   window.menuItems.addMenuItems = addMenuItems;
 
-
   const $cartItems = $(`#full-cart-contents`);
 
   window.$cartItems = $cartItems;
@@ -47,14 +44,14 @@ $(document).ready(function () {
 
   function addCartElement(item) {
     $cartItems.append(item);
-  };
+  }
 
   function clearCartItems() {
     $cartItems.empty();
-  };
+  }
 
   const addCartItems = function (cartItems) {
-    console.log("cart", cartItems);
+    // console.log("cart", cartItems);
     clearCartItems();
     for (let item of cartItems) {
       const cartItemElement = cartItem.createCartElement(item);
@@ -63,8 +60,4 @@ $(document).ready(function () {
   };
 
   window.cartItems.addCartItems = addCartItems;
-
-
-
 });
-

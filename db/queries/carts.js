@@ -2,8 +2,10 @@ const { Pool } = require("pg/lib");
 const db = require("../connection");
 
 const getCart = (id) => {
-  console.log('cartId', id);
-  return db.query(`
+  console.log("cartId", id);
+  return db
+    .query(
+      `
   SELECT carts.id,
   user_id,
   ordered_status,
@@ -16,14 +18,18 @@ const getCart = (id) => {
   picture_url,
   quantity,
   description,
-  menu_items.name
+  menu_items.name,
+  users.phone
   FROM carts
   JOIN cart_menu_items ON carts.id = cart_id
   JOIN menu_items ON menu_item_id = menu_items.id
+  LEFT JOIN users ON users.id = carts.user_id
   WHERE carts.id = $1
-  GROUP BY carts.id, menu_item_id, quantity, menu_items.name, menu_items.price,picture_url, description;
-  `, [id])
-    .then(cart => {
+  GROUP BY carts.id, menu_item_id, quantity, menu_items.name, menu_items.price,picture_url, description, users.phone;
+ `,
+      [id]
+    )
+    .then((cart) => {
       // console.log(cart);
       return cart.rows;
     });
@@ -58,14 +64,35 @@ const addToCart = (cartItemData) => {
 };
 
 const removeFromCart = (deleteItemData) => {
-  console.log('deleteItemData', deleteItemData);
+  console.log("deleteItemData", deleteItemData);
   let queryParams = [];
   for (let key in deleteItemData) {
     queryParams.push(deleteItemData[key]);
   }
   console.log("dqp", queryParams);
 
-  return db.query(`DELETE FROM cart_menu_items WHERE cart_id = $1 AND menu_item_id = $2`, queryParams);
+  return db.query(
+    `DELETE FROM cart_menu_items WHERE cart_id = $1 AND menu_item_id = $2`,
+    queryParams
+  );
+};
+//// if we have auser cookie we skeep the user screen check (preorder.js)
+const addUserToCart = (id) => {
+  console.log("id:", id);
+  return db.query(
+    `UPDATE carts
+SET user_id = $1
+WHERE id = (SELECT max(id) FROM carts)
+  RETURNING *;
+      `,
+    [id]
+  );
 };
 
-module.exports = { getCart, createEmptyCart, addToCart, removeFromCart };
+module.exports = {
+  getCart,
+  createEmptyCart,
+  addToCart,
+  removeFromCart,
+  addUserToCart,
+};

@@ -2,17 +2,15 @@ const express = require("express");
 const router = express.Router();
 const orderQueries = require("../db/queries/order");
 const { sendMessage, sendAlertOwner } = require("../public/send_sms");
+router.get("/", (req, res) => { });
 
 router.post("/", (req, res) => {
-  console.log('req.body is: ', req.body);
-  sendMessage(req.body.telephone);
-  sendAlertOwner(req.body.telephone);
-  return orderQueries
-    .makeOrder(/*req.body.id??? how to link order with cart? */)
-    .then((order) => {
-      console.log("from router:", order);
-      res.json(order);
-    });
+  sendMessage(req.body.phone);
+  sendAlertOwner(req.body.phone);
+  return orderQueries.makeOrder(req.body.id).then((order) => {
+    console.log("from router:", order);
+    res.json(order);
+  });
 });
 
 module.exports = router;

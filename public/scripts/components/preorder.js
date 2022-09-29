@@ -72,14 +72,18 @@ $(() => {
 
   $("#numberInput").on("submit", function (event) {
     event.preventDefault();
-    console.log("this is the form");
+    console.log("request sended");
     const data = $(this).serialize();
     console.log('number form data" ', data);
 
     $.post("/api/users", data).then((d) => {
-      console.log(d);
-      checkout.addCheckoutMenu(d);
-      views_manager.show("checkout");
+      console.log("user:", d);
+
+      $.post("/api/carts/", d).then((data) => {
+        console.log("cartinfo?;", data.id);
+        checkout.addCheckoutMenu(data.id);
+        views_manager.show("checkout");
+      });
     });
   });
 });

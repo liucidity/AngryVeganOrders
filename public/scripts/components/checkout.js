@@ -1,6 +1,6 @@
 $(() => {
   window.createCheckout = {};
-  const createCheckouts = () => {
+  const createCheckouts = (item) => {
     const $check = $(
       `
       <nav class="navbar navbar-light bg-light">
@@ -29,7 +29,7 @@ $(() => {
                 <!-- image container -->
                 <div class="col-3">
                   <img
-                    src="{item.picture_url}"
+                    src="${item.picture_url}"
                     class="img-fluid rounded-start"
                     alt="burger"
                     width="128"
@@ -40,12 +40,12 @@ $(() => {
                 <div class="col-9">
                   <!-- card body -->
                   <div class="card-body row">
-                    <h5 class="card-title">{item.name}</h5>
-                    <p class="card-text">{item.description}</p>
+                    <h5 class="card-title">${item.name}</h5>
+                    <p class="card-text">${item.description}</p>
                     <!-- price, cart and quantity -->
                     <div class="cart-functions d-flex justify-content-between">
                       <div>
-                        <div class="item-price">{item.price}</div>
+                        <div class="item-price">${item.subtotal}</div>
                       </div>
                     </div>
                   </div>
@@ -54,11 +54,13 @@ $(() => {
             </div>
           </div>
           <div class="card">
-            <p>subtotal: {cart.total}</p>
+            <p>subtotal: ${item.subtotal}</p>
             <br />
-            <p>tax: {cart.total * 0.12}</p>
+            <p>tax: ${item.subtotal * 0.12}</p>
             <br />
-            <p>TOTAL: {cart.total + tax}</p>
+            <p>TOTAL: ${
+              Number(item.subtotal) + Number(item.subtotal * 0.12)
+            }</p>
           </div>
           <button type="submit" id='orderConfirmation' class="btn btn-success w-50 mt-2 mb-3">
             confirm order
@@ -97,9 +99,14 @@ $(() => {
   };
   const addCheckoutMenu = (cartData) => {
     // console.log("running");
-    clearCheckoutMenu();
-    const checkoutElement = window.createCheckout.createCheckout(cartData);
-    appendCheckoutElement(checkoutElement);
+
+    $.get(`/api/carts/${cartData}`, (data) => {
+      console.log("data", data);
+      const checkoutElement = window.createCheckout.createCheckout(data[0]);
+      appendCheckoutElement(checkoutElement);
+    });
+
+    // clearCheckoutMenu();
   };
 
   window.checkout.addCheckoutMenu = addCheckoutMenu;

@@ -79,8 +79,8 @@ $(() => {
       console.log("user:", d);
 
       $.post("/api/carts/", d).then((data) => {
-        console.log("cartinfo?;", data);
-        checkout.addCheckoutMenu(data);
+        console.log("cartinfo?;", data.id);
+        checkout.addCheckoutMenu(data.id);
         views_manager.show("checkout");
       });
     });

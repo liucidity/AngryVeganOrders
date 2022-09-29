@@ -140,10 +140,6 @@ $(document).ready(function () {
     // console.log("quantityValue", quantityValue);
     const itemData = { itemId: itemIdValue, quantity: quantityValue };
 
-    // $.post(`/api/carts/${currentCart}`, function () {
-    //   console.log(itemData);
-    //   $(this).siblings('.menu-item-quantity').val();
-    // });
     $.ajax({
       method: "POST",
       url: `/api/carts/${currentCart}`,

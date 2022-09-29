@@ -33,7 +33,8 @@ const getOrders = function () {
   (SELECT SUM(price*quantity) FROM menu_items
   JOIN cart_menu_items ON menu_item_id = menu_items.id WHERE cart_id = orders.cart_id) AS subtotal,
   (SELECT phone FROM users JOIN carts ON users.id = carts.user_id WHERE carts.id = orders.cart_id) AS phone
-  FROM orders;
+  FROM orders
+  ORDER BY orders.id;
   `);
 };
 
@@ -58,11 +59,22 @@ const updateOrder = function (updateData) {
   }
   console.log(typeof queryParams[1]);
 
-  return db.query(`
+  //queryParams has 2 elements
+  //below query only requires 1 due to '$1' wrapped string placeholder
+  return db.query(
+    `
   UPDATE orders
   SET pickup_time = NOW() + interval '${queryParams[1]} minutes'
-  WHERE id = ${queryParams[0]}
+  WHERE id = $1
   RETURNING id, pickup_time;
-  `);
+  `,
+    [queryParams[0]]
+  );
+  // return db.query(`
+  // UPDATE orders
+  // SET pickup_time = NOW() + interval '${queryParams[1]} minutes'
+  // WHERE id = ${queryParams[0]}
+  // RETURNING id, pickup_time;
+  // `);
 };
 module.exports = { makeOrder, getOrders, updateOrder, getOrderById };

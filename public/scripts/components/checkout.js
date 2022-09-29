@@ -82,14 +82,6 @@ $(() => {
 
   ///////////////////get cart info//////////////////////////////
 
-  $.get("/api/carts").then((cartID) => {
-    currentCart = cartID.id;
-    console.log("currentCart", currentCart);
-    $.get(`/api/carts/${cartID.id}`, (cartData) => {
-      console.log("cartdata", cartData);
-    });
-  });
-
   /////////////////rendering page Window_manager////////////////////////////////////////
   const $checkout = $("<div></div>");
 

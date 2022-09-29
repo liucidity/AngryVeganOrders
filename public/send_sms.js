@@ -7,15 +7,9 @@ const sendMessage = (phone) => {
   console.log('phone', phone);
   client.messages
     .create({
-<<<<<<< HEAD
       body: `Your Order: #${phone} has been received, We will update you with a pickup time shortly! 🕛`,
       from: "+12495043092",
-      to: `+17788396088`,//phone goes here <--
-=======
-      body: "Hey is this working?",
-      from: "+12495043092", //phone goes here <--
-      to: phone,
->>>>>>> master
+      to: phone,//phone goes here <--
     })
     .then((userMessage) => {
       console.log(userMessage.sid);

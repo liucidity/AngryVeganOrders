@@ -46,7 +46,27 @@ $(() => {
 
     $.get(`/api/order/${orderId}`, (data) => {
       console.log("data  for thankyou page", data);
-      const checkoutElement = window.createThankPage.createThankPage(data[0]);
+      // const isnull = data[0].pickup_time;
+
+      //set time interval
+
+      //check if data.pickup_time is not null
+      const isTime = () => {
+        $.get(`/api/order/${orderId}`, (ndata) => {
+          // if not then re render with new information.
+          console.log("checking...", ndata[0].pickup_time);
+          if (ndata[0].pickup_time) {
+            console.log("it changed!!");
+            clearThanks();
+            checkoutElement = window.createThankPage.createThankPage(ndata[0]);
+            appendThanksElement(checkoutElement);
+            return clearInterval(time);
+          }
+        });
+      };
+      const time = setInterval(isTime, 5000);
+
+      let checkoutElement = window.createThankPage.createThankPage(data[0]);
       appendThanksElement(checkoutElement);
     });
 

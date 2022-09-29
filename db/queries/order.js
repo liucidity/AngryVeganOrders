@@ -39,7 +39,16 @@ const getOrders = function () {
 
 const getOrderById = (id) => {
   console.log("this is the id:", id);
-  return db.query(`SELECT * FROM orders WHERE id = $1;`, [id]);
+  return db.query(
+    `
+  SELECT *,
+  (SELECT SUM(price*quantity) FROM menu_items
+  JOIN cart_menu_items ON menu_item_id = menu_items.id WHERE cart_id = orders.cart_id) AS subtotal
+  FROM orders
+  WHERE id = $1;
+  `,
+    [id]
+  );
 };
 
 const updateOrder = function (updateData) {

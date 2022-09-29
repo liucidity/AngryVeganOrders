@@ -11,10 +11,12 @@ $(() => {
             <br />
             <br />
             <h5>order details:</h5>
-            <p>order id: {data.id}</p>
+            <p>order id: ${data.id}</p>
             <p>
-              pickup time: data.time ? {pickup_time} : wainting for restaurarnt
-              )
+              pickup time: ${
+                data.pickup_time ? data.pickup_time : `waiting for restaurant`
+              }
+
             </p>
           </div>
         </div>
@@ -40,8 +42,8 @@ $(() => {
     // console.log("running");
 
     $.get(`/api/order/${orderId}`, (data) => {
-      console.log("data", $(data));
-      const checkoutElement = window.createThankPage.createThankPage(data);
+      console.log("data  for thankyou page", data);
+      const checkoutElement = window.createThankPage.createThankPage(data[0]);
       appendThanksElement(checkoutElement);
     });
 

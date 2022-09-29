@@ -78,9 +78,7 @@ $(() => {
     );
     return $check;
   };
-  window.createCheckout.createCheckout = createCheckouts; //// category selection use it as an example!!
-
-  ///////////////////get cart info//////////////////////////////
+  window.createCheckout.createCheckout = createCheckouts;
 
   /////////////////rendering page Window_manager////////////////////////////////////////
   const $checkout = $("<div></div>");

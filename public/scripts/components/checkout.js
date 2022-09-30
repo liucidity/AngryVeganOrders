@@ -68,7 +68,7 @@ $(() => {
               <button type="submit" id='orderConfirmation' class="btn btn-success w-50 mt-2 mb-3">
                 confirm order
               </button>
-              <button type="submit" class="btn btn-danger mt-2 mb-3">
+              <button type="submit" id="edit-cart" class="btn btn-danger mt-2 mb-3">
                 Edit cart
               </button>
               <div class="card-footer text-muted">Angry Vegan</div>
@@ -116,6 +116,11 @@ $(() => {
   // $("#back-to-preorder-btn").click(function () {
   //   views_manager.show("preorder");
   // });
+  $("#edit-cart").click(function () {
+    $("#cart-drawer").show();
+    $("#page-header").show();
+    views_manager.show("menu");
+  });
   window.checkout.addCheckoutMenu = addCheckoutMenu;
 
   // bring total and phone number for the user

@@ -1,10 +1,11 @@
 $(document).ready(function () {
   let currentCart = null;
   const $menuItems = $(`
-    <section id="menu-items-container">
-    <div data-bs-spy="scroll" data-bs-target="#categories-selector" data-bs-smooth-scroll="true" class="scrollspy-menu-items" tabindex="0">
-      <p>Loading Menu Items...</p>
-    </section
+    <div id="menu-items-container" data-bs-spy="scroll" data-bs-target="#categories-selector" data-bs-offset="20" class="scrollspy-example" tabindex="0">
+
+    </div>
+
+
 `);
   window.$menuItems = $menuItems;
   window.menuItems = {};

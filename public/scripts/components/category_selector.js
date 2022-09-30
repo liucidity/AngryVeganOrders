@@ -12,7 +12,7 @@ $(document).ready(function () {
   window.categorySelector.createSelectorElement = createSelectorElement;
 });
 const $categorySelector = $(`
-    <div id="categories-selector" class="list-group flex-row overflow-auto position-sticky sticky-top">
+    <div id="categories-selector" class="list-group">
 
     </div>
     `);

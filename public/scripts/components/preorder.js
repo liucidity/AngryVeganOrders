@@ -2,7 +2,7 @@ $(() => {
   const $preorderobj = $(
     `<div>
   <nav class="navbar navbar-light bg-light">
-    <button class="btn"><i class="fa-solid fa-arrow-left"></i> Back</button>
+    <button class="btn" id="back-to-cart-btn"><i class="fa-solid fa-arrow-left"></i> Back</button>
     <a class="navbar-brand" href="#">
       <img
         src="https://www.angryveganpenticton.ca/app/uploads/Angry-Vegan.svg"
@@ -70,6 +70,12 @@ $(() => {
   }
   //////////////////submit number and creates an user/////////////////////////////////////////
 
+
+  $("#back-to-cart-btn").click(function () {
+    $("#cart-drawer").show();
+    $("#page-header").show();
+    views_manager.show("menu");
+  });
   $("#numberInput").on("submit", function (event) {
     event.preventDefault();
     console.log("request sended");

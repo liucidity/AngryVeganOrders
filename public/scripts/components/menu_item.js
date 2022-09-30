@@ -10,7 +10,7 @@ $(document).ready(function () {
               <div class="col-3">
                 <img
                   src="${item.picture_url}"
-                  class="img-fluid rounded-start" alt="burger" width="128" height="128">
+                  class="img-fluid rounded-start" width="128" height="128">
               </div>
               <!-- card right section -->
               <div class="col-9">

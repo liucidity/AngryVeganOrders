@@ -58,20 +58,17 @@ $(() => {
           <br />
           <p>tax: ${items[0].subtotal * 0.12}</p>
           <br />
-          <p>TOTAL: ${
-            Number(items[0].subtotal) + Number(items[0].subtotal * 0.12)
-          }</p>
-          <input type="hidden" id="phoneN" name="custId" value="${
-            items[0].phone
-          }">
-              <input type="hidden" id="cId" name="custId" value="${
-                items[0].id
-              }">
+          <p>TOTAL: ${Number(items[0].subtotal) + Number(items[0].subtotal * 0.12)
+      }</p>
+          <input type="hidden" id="phoneN" name="custId" value="${items[0].phone
+      }">
+              <input type="hidden" id="cId" name="custId" value="${items[0].id
+      }">
               </div>
               <button type="submit" id='orderConfirmation' class="btn btn-success w-50 mt-2 mb-3">
                 confirm order
               </button>
-              <button type="submit" class="btn btn-danger mt-2 mb-3">
+              <button type="submit" id="edit-cart" class="btn btn-danger mt-2 mb-3">
                 Edit cart
               </button>
               <div class="card-footer text-muted">Angry Vegan</div>
@@ -116,6 +113,14 @@ $(() => {
     // clearCheckoutMenu();
   };
 
+  // $("#back-to-preorder-btn").click(function () {
+  //   views_manager.show("preorder");
+  // });
+  $("#edit-cart").click(function () {
+    $("#cart-drawer").show();
+    $("#page-header").show();
+    views_manager.show("menu");
+  });
   window.checkout.addCheckoutMenu = addCheckoutMenu;
 
   // bring total and phone number for the user

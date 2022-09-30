@@ -3,7 +3,7 @@ $(document).ready(function () {
 
   const createCategoryElement = function (category) {
     let $category = $(`
-  <div id="${category.name}">${category.name}</div>
+  <div class="categorySections" id="${category.name}">${category.name}</div>
   `);
     return $category;
   };

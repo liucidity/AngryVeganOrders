@@ -152,15 +152,39 @@ $(document).ready(function () {
       });
     });
   });
+  // $(document).on("click", ".delete-btn", function (e) {
+  //   e.preventDefault();
+
+  //   const itemId = $(this)
+  //     .parent()
+  //     .siblings(".full-cart-form")
+  //     .find(".itemId")[0];
+  //   const itemIdValue = parseInt($(itemId).val());
+  //   // console.log(typeof (itemIdValue));
+  //   $.ajax({
+  //     method: "PUT",
+  //     url: `/api/carts/${currentCart}`,
+  //     data: { menu_item_id: itemIdValue },
+  //   }).done(() => {
+  //     $.get(`/api/carts/${currentCart}`, (cartData) => {
+  //       // console.log("delete cartdata", cartData);
+  //       cartItems.addCartItems(cartData);
+  //       renderCartDrawer(cartData[0]);
+  //     });
+  //   });
+  // });
+
   $(document).on("click", ".delete-btn", function (e) {
     e.preventDefault();
+    console.log('this', this);
 
     const itemId = $(this)
       .parent()
-      .siblings(".full-cart-form")
-      .children(".itemId")[0];
+      .siblings('.col-9')
+      .find(".itemId")[0];
+    console.log(itemId);
     const itemIdValue = parseInt($(itemId).val());
-    // console.log(typeof (itemIdValue));
+    console.log("value", (itemIdValue));
     $.ajax({
       method: "PUT",
       url: `/api/carts/${currentCart}`,
@@ -176,6 +200,7 @@ $(document).ready(function () {
 
   $(".cart-submit").click(function () {
     $("#cart-drawer").hide();
+    $("#page-header").hide();
     views_manager.show("preorder");
   });
 
@@ -186,6 +211,8 @@ $(document).ready(function () {
       cartItems.addCartItems(cartData);
     });
   });
+
+
   const renderCartDrawer = function (cartDrawerData) {
     // console.log("cartDrawerData", cartDrawerData);
 
@@ -193,6 +220,7 @@ $(document).ready(function () {
     if (!cartDrawerData) {
       $("#cart-total-quantity").text("0");
       $("#cart-subtotal").text("0.00");
+      return;
     }
     $("#cart-total-quantity").text(cartDrawerData.item_count);
     $("#cart-subtotal").text(cartDrawerData.subtotal);

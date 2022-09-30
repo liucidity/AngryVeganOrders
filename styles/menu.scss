@@ -1,9 +1,4 @@
 
-#main-items-container {
-  position: relative;
-  overflow-y: scroll;
-  height: 100%;
-}
 
 #categories-selector {
   display: flex;
@@ -35,14 +30,31 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  height: 100%;
+  padding-bottom: 2em;
+  overflow-y: scroll;
 }
 
 .menu-item {
   width: 90%;
 }
 .categorySections {
-
   scroll-margin-top: 7em;
-
 }
 
+#cart-drawer {
+  display: flex;
+    height: 4em;
+    align-items: center;
+  position: sticky;
+  bottom: 1em;
+}
+
+img.img-fluid {
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 100%;
+  object-fit: cover;
+}

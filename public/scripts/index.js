@@ -175,6 +175,7 @@ $(document).ready(function () {
   });
 
   $(".cart-submit").click(function () {
+    $("#cart-drawer").hide();
     views_manager.show("preorder");
   });
 
@@ -189,11 +190,10 @@ $(document).ready(function () {
     // console.log("cartDrawerData", cartDrawerData);
 
     //WIP: bug fix on delete change back to 0 quantity and 0 subtotal
-    // if (!cartDrawerData) {
-    //   $("#cart-total-quantity").text("0");
-    //   $("#cart-subtotal").text("0.00");
-    //   return;
-    // }
+    if (!cartDrawerData) {
+      $("#cart-total-quantity").text("0");
+      $("#cart-subtotal").text("0.00");
+    }
     $("#cart-total-quantity").text(cartDrawerData.item_count);
     $("#cart-subtotal").text(cartDrawerData.subtotal);
   };

@@ -64,11 +64,11 @@ const updateOrder = function (updateData) {
   return db.query(
     `
   UPDATE orders
-  SET pickup_time = NOW() + interval '${queryParams[1]} minutes'
+  SET pickup_time = $2
   WHERE id = $1
   RETURNING id, pickup_time;
   `,
-    [queryParams[0]]
+    [queryParams]
   );
   // return db.query(`
   // UPDATE orders

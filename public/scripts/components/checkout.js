@@ -51,14 +51,14 @@ $(() => {
 
       $check.appendTo($list);
     }
-    const $final = $(` <div class="card">
-           <p>Oreder id: ${items[0].id}</p>
+    const $final = $(` <div class="card text-center ">
+           <p>Your Order:</p>
 
-          <p>subtotal: ${items[0].subtotal}</p>
+          <p>Subtotal: $${items[0].subtotal}</p>
           <br />
-          <p>tax: ${items[0].subtotal * 0.12}</p>
+          <p>Tax: $${(items[0].subtotal * 0.12).toFixed(2)}</p>
           <br />
-          <p>TOTAL: ${Number(items[0].subtotal) + Number(items[0].subtotal * 0.12)
+          <p>TOTAL: $${(Number(items[0].subtotal) + Number(items[0].subtotal * 0.12)).toFixed(2)
       }</p>
           <input type="hidden" id="phoneN" name="custId" value="${items[0].phone
       }">
@@ -66,10 +66,10 @@ $(() => {
       }">
               </div>
               <button type="submit" id='orderConfirmation' class="btn btn-success w-50 mt-2 mb-3">
-                confirm order
+                Confirm Order
               </button>
               <button type="submit" id="edit-cart" class="btn btn-danger mt-2 mb-3">
-                Edit cart
+                Edit Cart
               </button>
               <div class="card-footer text-muted">Angry Vegan</div>
 
@@ -105,7 +105,7 @@ $(() => {
     // console.log("running");
 
     $.get(`/api/carts/${cartData}`, (data) => {
-      console.log("data", data);
+      // console.log("data", data);
       const checkoutElement = window.createCheckout.createCheckout(data);
       appendCheckoutElement(checkoutElement);
     });
@@ -126,9 +126,9 @@ $(() => {
   // bring total and phone number for the user
   $("#orderConfirmation").on("click", () => {
     const data = { id: $("#cId").val(), phone: $("#phoneN").val() };
-    console.log("data for post orders", data);
+    // console.log("data for post orders", data);
     $.post("/api/order", data).then((orderData) => {
-      console.log("orderdata:", orderData);
+      // console.log("orderdata:", orderData);
       thanks.addThanksPage(orderData.id);
       views_manager.show("thanks");
     });

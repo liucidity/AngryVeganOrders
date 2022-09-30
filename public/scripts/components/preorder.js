@@ -13,15 +13,14 @@ $(() => {
       />
       Angry Vegan
     </a>
-    <div></div>
   </nav>
   <header class="m-5">
-    <h2 class="text-center">Enter you mobile Number</h2>
+    <h2 class="text-center">We Won't Sell Your Information 🤞</h2>
   </header>
   <div class="card text-center">
     <div class="card-header"></div>
     <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
+      <h5 class="card-title"></h5>
       <p class="card-text">
         Get notified when your food is ready for pickup - you can also get
         special promotion alerts
@@ -78,15 +77,15 @@ $(() => {
   });
   $("#numberInput").on("submit", function (event) {
     event.preventDefault();
-    console.log("request sended");
+    // console.log("request sended");
     const data = $(this).serialize();
-    console.log('number form data" ', data);
+    // console.log('number form data" ', data);
 
     $.post("/api/users", data).then((d) => {
-      console.log("user:", d);
+      // console.log("user:", d);
 
       $.post("/api/carts/", d).then((data) => {
-        console.log("cartinfo?;", data.id);
+        // console.log("cartinfo?;", data.id);
         checkout.addCheckoutMenu(data.id);
         views_manager.show("checkout");
       });

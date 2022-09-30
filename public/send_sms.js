@@ -4,7 +4,7 @@ const client = require("twilio")(accountSid, authToken);
 
 // send order data and phone
 const sendMessage = (orderTextData) => {
-  console.log("orderTextData", orderTextData);
+  // console.log("orderTextData", orderTextData);
   client.messages
     .create({
       body: `Your Order: #${orderTextData.id} has been received, We will update you with a pickup time shortly! 🕛`,
@@ -12,7 +12,7 @@ const sendMessage = (orderTextData) => {
       to: orderTextData.phone, //phone goes here <--
     })
     .then((userMessage) => {
-      console.log(userMessage.sid);
+      // console.log(userMessage.sid);
     })
     .catch((err) => {
       console.log(err.message);
@@ -27,22 +27,22 @@ const sendAlertOwner = (orderTextData) => {
       to: `+17788396088`, //phone goes here <--
     })
     .then((userMessage) => {
-      console.log(userMessage.sid);
+      // console.log(userMessage.sid);
     })
     .catch((err) => {
       console.log(err.message);
     });
 };
 const sendUpdate = (updateData) => {
-  console.log("updateData", updateData);
+  // console.log("updateData", updateData);
   client.messages
     .create({
-      body: `Your Order #${updateData.id} is being cooked deliciously 👨🏻‍🍳, it'll be ready for Pickup in ${updateData.pickup_time} minutes`,
+      body: `Your Order #${updateData.id} is being cooked deliciously 👨🏻‍🍳, it'll be ready for Pickup in ${updateData.pickup_time} seconds`,
       from: "+12495043092",
-      to: `+17788396088`, //phone goes here <--
+      to: updateData.phone, //phone goes here <--
     })
     .then((userMessage) => {
-      console.log(userMessage.sid);
+      // console.log(userMessage.sid);
     })
     .catch((err) => {
       console.log(err.message);

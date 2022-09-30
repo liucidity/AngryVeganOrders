@@ -2,7 +2,7 @@ const { Pool } = require("pg/lib");
 const db = require("../connection");
 
 const getCart = (id) => {
-  console.log("cartId", id);
+  // console.log("cartId", id);
   return db
     .query(
       `
@@ -36,7 +36,7 @@ const getCart = (id) => {
 };
 
 const createEmptyCart = () => {
-  console.log("cart created");
+  // console.log("cart created");
   return db.query(`INSERT INTO carts DEFAULT VALUES RETURNING *;`);
 };
 
@@ -47,7 +47,7 @@ const addToCart = (cartItemData) => {
   for (let key in cartItemData) {
     queryParams.push(cartItemData[key]);
   }
-  console.log("qp", queryParams);
+  // console.log("qp", queryParams);
   // upsert
   return db.query(
     `
@@ -64,12 +64,12 @@ const addToCart = (cartItemData) => {
 };
 
 const removeFromCart = (deleteItemData) => {
-  console.log("deleteItemData", deleteItemData);
+  // console.log("deleteItemData", deleteItemData);
   let queryParams = [];
   for (let key in deleteItemData) {
     queryParams.push(deleteItemData[key]);
   }
-  console.log("dqp", queryParams);
+  // console.log("dqp", queryParams);
 
   return db.query(
     `DELETE FROM cart_menu_items WHERE cart_id = $1 AND menu_item_id = $2`,
@@ -78,7 +78,7 @@ const removeFromCart = (deleteItemData) => {
 };
 //// if we have auser cookie we skeep the user screen check (preorder.js)
 const addUserToCart = (id) => {
-  console.log("id:", id);
+  // console.log("id:", id);
   return db.query(
     `UPDATE carts
 SET user_id = $1

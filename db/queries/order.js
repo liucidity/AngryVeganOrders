@@ -1,7 +1,7 @@
 const db = require("../connection");
 
 const makeOrder = (id) => {
-  console.log("ordered made");
+  // console.log("ordered made");
   return db.query(
     `INSERT INTO orders(cart_id) VALUES($1) RETURNING *, (SELECT phone FROM users JOIN carts ON users.id = carts.user_id WHERE carts.id = $1);`,
     [id]
@@ -38,7 +38,7 @@ const getOrders = function () {
 };
 
 const getOrderById = (id) => {
-  console.log("this is the id:", id);
+  // console.log("this is the id:", id);
   return db.query(
     `
   SELECT *,
@@ -56,7 +56,7 @@ const updateOrder = function (updateData) {
   for (let key in updateData) {
     queryParams.push(updateData[key]);
   }
-  console.log(queryParams);
+  // console.log(queryParams);
 
   //queryParams has 2 elements
   //below query only requires 1 due to '$1' wrapped string placeholder

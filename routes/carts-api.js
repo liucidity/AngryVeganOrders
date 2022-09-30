@@ -3,7 +3,7 @@ const router = express.Router();
 const cartQueries = require("../db/queries/carts");
 
 router.get("/:id", (req, res) => {
-  console.log("req.id", req.params.id);
+  // console.log("req.id", req.params.id);
   cartQueries
     .getCart(req.params.id)
     .then((cart) => {
@@ -28,11 +28,11 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  console.log("this is req.body:", req);
+  // console.log("this is req.body:", req);
   cartQueries
     .addUserToCart(req.body.id)
     .then((cart) => {
-      console.log("cart with user:", cart);
+      // console.log("cart with user:", cart);
       res.json(cart.rows[0]);
     })
     .catch((err) => {
@@ -44,7 +44,7 @@ router.post("/:id", (req, res) => {
   cartQueries
     .addToCart({ cart_id: req.params.id, ...req.body })
     .then((cart) => {
-      console.log("cart from post :id", cart);
+      // console.log("cart from post :id", cart);
       res.json(cart);
     })
     .catch((err) => {
@@ -53,12 +53,12 @@ router.post("/:id", (req, res) => {
 });
 
 router.put("/:id", (req, res) => {
-  console.log(req.params.id);
-  console.log("body", req.body);
+  // console.log(req.params.id);
+  // console.log("body", req.body);
   cartQueries
     .removeFromCart({ cart_id: req.params.id, ...req.body })
     .then((cart) => {
-      console.log("delete cart data", cart);
+      // console.log("delete cart data", cart);
       res.json(cart);
     })
     .catch((err) => {

@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
   const createOrderAccordion = function (order) {
+    let time = new Date(order.time)
 
     let $order = $(`
   <div class="accordion-item orderItem${order.id}">
@@ -16,9 +17,9 @@ $(document).ready(function () {
             Phone: ${order.phone}
           </span>
         </div>
-        <div>
+        <div class="row">
         <span>
-        ${order.time}
+        ${time.toDateString()} ${time.getHours()}:${time.getMinutes()}
         </span
         <span>
         $${order.subtotal}
@@ -40,7 +41,6 @@ $(document).ready(function () {
       </thead>
       <tbody id="table${order.id}">
         <tr>
-          <td>#</td>
           <td>Item</td>
           <td>Quantity</td>
         </tr>
@@ -50,13 +50,13 @@ $(document).ready(function () {
 
 
       </div>
-      <div class="accordion-footer">
+      <div class="accordion-footer d-flex ali">
         <form class="confirm-form">
           <input type="hidden" class="orderId" value="${order.id}" name="${order.id}" />
-          <button class="subtract-time">-</button>
-          <input class="order-prep-time" type="number" min="0" max="120" value="10" step="5" />
-          <button class="add-time">+</button>
-          <button class="confirm-order" type="submit">confirm</button>
+          <button class="subtract-time btn btn-outline-success">-</button>
+          <input class="order-prep-time " type="number" min="0" max="120" value="10" step="5" />
+          <button class="add-time btn btn-outline-success">+</button>
+          <button class="confirm-order btn btn-success" type="submit">confirm</button>
         </form>
       </div>
     </div>
@@ -68,7 +68,6 @@ $(document).ready(function () {
 
     let $item = $(`
     <tr>
-          <td>${item.id}</td>
           <td>${item.name}</td>
           <td>${item.quantity}</td>
         </tr>
@@ -90,7 +89,7 @@ $(document).ready(function () {
 
   const loadOrders = function () {
     $.get("/restaurant/orders", (orderData) => {
-      console.log('orderData from GET: ', orderData);
+      // console.log('orderData from GET: ', orderData);
       for (let order of orderData) {
         const orderId = order.id;
         const cartId = order.cart_id;
@@ -98,7 +97,7 @@ $(document).ready(function () {
         addOrderToAccordion(orderElement);
 
         $.get(`/api/carts/${cartId}`, (cartAndItemData) => {
-          console.log('cartAndItemData', cartAndItemData);
+          // console.log('cartAndItemData', cartAndItemData);
           for (let item of cartAndItemData) {
             const orderItemElement = createOrderItemRowElement(item);
             addRowToItemTable(orderItemElement, orderId);
@@ -141,7 +140,7 @@ $(document).ready(function () {
     $(this)
       .siblings(".order-prep-time")
       .val(function (n, value) {
-        console.log(value);
+        // console.log(value);
         if (parseInt(value, 10) > 99) {
           return parseInt(value, 10);
         }
@@ -162,7 +161,7 @@ $(document).ready(function () {
     const orderIdValue = $(orderId).val();
     const time = $(this).siblings(".order-prep-time")[0];
     const timeValue = $(time).val();
-    console.log('amount of time to prepare', timeValue);
+    // console.log('amount of time to prepare', timeValue);
 
     //turn color yellow
     $(`.header${orderIdValue}`).css("background-color", "lemonchiffon");
@@ -182,7 +181,7 @@ $(document).ready(function () {
 
       //   const pickupTime = updatedOrderData.pickup_time;
       //   console.log("updated", updatedOrderData);
-      console.log("pickupTime", pickupTime);
+      // console.log("pickupTime", pickupTime);
 
       //   //if undefined return early
       //   // post to ordersAPI to send text to user with pickup time

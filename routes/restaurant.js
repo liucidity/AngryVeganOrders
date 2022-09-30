@@ -29,8 +29,8 @@ router.get('/orders', (req, res) => {
 
 
 router.put('/orders/:id', (req, res) => {
-  console.log('update request order#', req.params.id);
-  console.log('update request data', req.body);
+  // console.log('update request order#', req.params.id);
+  // console.log('update request data', req.body);
   orderQueries.updateOrder({ ...req.body })
     .then((order) => {
       res.json(order.rows[0]);

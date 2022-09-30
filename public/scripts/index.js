@@ -176,15 +176,15 @@ $(document).ready(function () {
 
   $(document).on("click", ".delete-btn", function (e) {
     e.preventDefault();
-    console.log('this', this);
+    // console.log('this', this);
 
     const itemId = $(this)
       .parent()
       .siblings('.col-9')
       .find(".itemId")[0];
-    console.log(itemId);
+    // console.log(itemId);
     const itemIdValue = parseInt($(itemId).val());
-    console.log("value", (itemIdValue));
+    // console.log("value", (itemIdValue));
     $.ajax({
       method: "PUT",
       url: `/api/carts/${currentCart}`,
@@ -205,9 +205,9 @@ $(document).ready(function () {
   });
 
   $("#cart-drawer").click(function () {
-    console.log(currentCart);
+    // console.log(currentCart);
     $.get(`/api/carts/${currentCart}`, (cartData) => {
-      console.log("cartdata", cartData);
+      // console.log("cartdata", cartData);
       cartItems.addCartItems(cartData);
     });
   });

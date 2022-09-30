@@ -1,18 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const orderQueries = require("../db/queries/order");
-const {
-  sendMessage,
-  sendAlertOwner,
-  sendUpdate,
-} = require("../public/send_sms");
+const { sendMessage, sendAlertOwner, sendUpdate } = require("../public/send_sms");
 // const { loadOrders } = require("../public/restaurant");
+
 
 router.post("/", (req, res) => {
   //reqbody is cart id and phone number
-  console.log("text rqbody", req.body);
-  return orderQueries
-    .makeOrder(req.body.id)
+  console.log('text rqbody', req.body);
+  return orderQueries.makeOrder(req.body.id)
     .then((order) => {
       console.log("from router:", order.rows[0]);
       sendMessage(order.rows[0]);

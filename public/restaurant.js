@@ -161,7 +161,8 @@ $(document).ready(function () {
     const orderId = $(this).siblings(".orderId")[0];
     const orderIdValue = $(orderId).val();
     const time = $(this).siblings(".order-prep-time")[0];
-    const timeValue = $(time).val() + " minutes";
+    const timeValue = $(time).val();
+    console.log('amount of time to prepare', timeValue);
 
     //turn color yellow
     $(`.header${orderIdValue}`).css("background-color", "lemonchiffon");

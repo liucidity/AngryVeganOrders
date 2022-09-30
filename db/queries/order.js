@@ -1,4 +1,3 @@
-const { QueryPage } = require("twilio/lib/rest/autopilot/v1/assistant/query");
 const db = require("../connection");
 
 const makeOrder = (id) => {
@@ -57,7 +56,7 @@ const updateOrder = function (updateData) {
   for (let key in updateData) {
     queryParams.push(updateData[key]);
   }
-  console.log(typeof queryParams[1]);
+  console.log(queryParams);
 
   //queryParams has 2 elements
   //below query only requires 1 due to '$1' wrapped string placeholder
@@ -67,8 +66,7 @@ const updateOrder = function (updateData) {
   SET pickup_time = $2
   WHERE id = $1
   RETURNING id, pickup_time;
-  `,
-    [queryParams]
+  `, [updateData.orderId, updateData.time]
   );
   // return db.query(`
   // UPDATE orders

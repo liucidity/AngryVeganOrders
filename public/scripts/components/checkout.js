@@ -126,8 +126,10 @@ $(() => {
   // bring total and phone number for the user
   $("#orderConfirmation").on("click", () => {
     const data = { id: $("#cId").val(), phone: $("#phoneN").val() };
-    console.log("data", data);
-    $.post("/api/order", data).then(() => {
+    console.log("data for post orders", data);
+    $.post("/api/order", data).then((orderData) => {
+      console.log("orderdata:", orderData);
+      thanks.addThanksPage(orderData.id);
       views_manager.show("thanks");
     });
   });

@@ -3,10 +3,11 @@ const db = require("../connection");
 
 const makeOrder = (id) => {
   console.log("ordered made");
-  return db.query(`INSERT INTO orders(cart_id) VALUES($1) RETURNING *, (SELECT phone FROM users JOIN carts ON users.id = carts.user_id WHERE carts.id = $1);`, [id]);
+  return db.query(
+    `INSERT INTO orders(cart_id) VALUES($1) RETURNING *, (SELECT phone FROM users JOIN carts ON users.id = carts.user_id WHERE carts.id = $1);`,
+    [id]
+  );
 };
-
-
 
 // SELECT orders.id,
 //   carts.id AS cart_id,
@@ -26,7 +27,6 @@ const makeOrder = (id) => {
 //   JOIN users ON users.id = carts.user_id
 //   GROUP BY orders.id, carts.id, time, updated_at, pickup_time, user_id, users.phone, quantity, menu_items.name;
 
-
 const getOrders = function () {
   return db.query(`
   SELECT *,
@@ -38,6 +38,20 @@ const getOrders = function () {
   `);
 };
 
+const getOrderById = (id) => {
+  console.log("this is the id:", id);
+  return db.query(
+    `
+  SELECT *,
+  (SELECT SUM(price*quantity) FROM menu_items
+  JOIN cart_menu_items ON menu_item_id = menu_items.id WHERE cart_id = orders.cart_id) AS subtotal
+  FROM orders
+  WHERE id = $1;
+  `,
+    [id]
+  );
+};
+
 const updateOrder = function (updateData) {
   let queryParams = [];
   for (let key in updateData) {
@@ -47,12 +61,15 @@ const updateOrder = function (updateData) {
 
   //queryParams has 2 elements
   //below query only requires 1 due to '$1' wrapped string placeholder
-  return db.query(`
+  return db.query(
+    `
   UPDATE orders
   SET pickup_time = NOW() + interval '${queryParams[1]} minutes'
   WHERE id = $1
   RETURNING id, pickup_time;
-  `, [queryParams[0]]);
+  `,
+    [queryParams[0]]
+  );
   // return db.query(`
   // UPDATE orders
   // SET pickup_time = NOW() + interval '${queryParams[1]} minutes'
@@ -60,4 +77,4 @@ const updateOrder = function (updateData) {
   // RETURNING id, pickup_time;
   // `);
 };
-module.exports = { makeOrder, getOrders, updateOrder };
+module.exports = { makeOrder, getOrders, updateOrder, getOrderById };
